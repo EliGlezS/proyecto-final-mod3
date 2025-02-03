@@ -7,11 +7,11 @@ function verificationPalindrome(word) {
         return;
     }
 
-    //La palabra que se introduce como argumento tiene que estar en minúscula.
+    //La palabra que se introduce como argumento tiene que estar en minúscula. (toLowerCase()--> minuscula)
     let wordLower = word.toLowerCase();
     console.log(`La palabra es: ${wordLower}`);
 
-    //toLowerCase()--> minuscula, luego pasamos a array, invertimos y volvemos a convertir en string
+    //Luego pasamos a array, invertimos y volvemos a convertir en string
     let arrWord = wordLower.split("").reverse().join("");
     console.log(`La palabra invertida: ${arrWord}`);
 

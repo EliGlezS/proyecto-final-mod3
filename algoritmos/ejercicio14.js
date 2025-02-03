@@ -62,14 +62,6 @@ function checkAnagrams1(string1, string2) {
     console.log(word1MinusNorm);
     console.log(word2MinusNorm);
 
-    //convertimos ambas en array con el método split()
-
-    /*let word1AlfabOrder = word1MinusNorm.split("").sort().join("");
-    let word2AlfabOrder = word2MinusNorm.split("").sort().join("");
-
-    console.log(word1AlfabOrder);
-    console.log(word2AlfabOrder);*/
-
     /*condicion para que sean anagramas que tengan las mismas letras es decir que si las palabras una vez
     ordenadas son iguales quiere decir que se ha creado de la misma palabra*/ 
 

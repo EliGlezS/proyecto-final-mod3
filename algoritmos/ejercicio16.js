@@ -2,7 +2,7 @@
 
 function romanToInt(roman) {
     
-    // Mapeo de los números romanos a sus valores arábigos
+    // Objeto creado donde sus propiedades están formadas por clave (nº Romanos) y valor (nº arábigo).
     const romanValues = {
         I: 1,
         V: 5,
@@ -16,7 +16,7 @@ function romanToInt(roman) {
     // Expresión regular para validar que el número romano solo contenga caracteres válidos
     const validRomanRegex = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
 
-    // Validación de la entrada: ¿solo contiene caracteres romanos válidos?
+    // Validación del número introducido.
     /*.test() es un método que pertenece a las expresiones regulares. 
     Retornar true si la cadena cumple con el patrón de la expresión regular.  
     Retornar false si la cadena no cumple con el patrón.*/
@@ -46,7 +46,7 @@ function romanToInt(roman) {
         }
     }
 
-    console.log(result); // Devolvemos el resultado total
+    console.log(result);
 }
 
 //romanToInt("MCMXCIV");

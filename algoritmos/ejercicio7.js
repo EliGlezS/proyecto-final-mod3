@@ -20,7 +20,7 @@ function sortAscending (arr){
     console.log("El array a ordenar: ", arr);
 
     /*Primer bucle para recorrer el array tantas veces como elementos
-    tenga mi array salvo 1 (-1) que es el que ya estará ordenador una vez salga
+    tenga mi array salvo 1 (-1) que es el que ya estará ordenado una vez salga
     del segundo bucle (El primero recorre la longitud del array y el segundo se encarga 
     de mirar cada numero y sus adyacentes para ordenarlo*/ 
 

@@ -1,8 +1,9 @@
 //4 - Crear un algoritmo que devuelva el factorial de un número.
 
 /*Se crea una función que compruebe primeramente si se introduce un número y si es
-mayor que 0 ya que 0 no tiene sentido hahcerle factorial, al igual que números negativos.
-Luego de comprobar esa condición, se hace un bucle for que */
+mayor que 0, ya que 0 no tiene sentido hacerle factorial, al igual que números negativos.
+Luego de comprobar esa condición, se hace un bucle for que multipica y asigna a resultado cada i hasta
+el número introducido.*/
 
 function factorialFunction (number) {
 

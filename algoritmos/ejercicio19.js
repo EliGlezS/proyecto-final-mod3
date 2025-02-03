@@ -4,14 +4,14 @@
 
 function changesYearsToCenturies(year) {
 
-    //que solo pueda introducirse un número.
+    //Solo pueda introducirse un número.
 
     if(isNaN(year) || typeof year !== "number"){
         console.log("No es un número. Introduce uno válido.");
         return;
     }
     
-    //Ese número o año debe ser entero y positivo, si no entra en el segundo if y no se sigue ejecuntando la funcion 
+    //Ese número o año debe ser entero y positivo, si no entra en el segundo if y no se sigue ejecuntando la función 
     
     if(!Number.isInteger(year) || year <= 0) {
         console.log("El año introducido debe ser positivo y entero.");

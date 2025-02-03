@@ -10,7 +10,12 @@ function characterCounter(str, charact) {
         return;
     }
 
-    //Ponemos la palabra en minuscula, quitamos los posibles espacios y pasamos a array
+    if (charact.length !== 1) {
+        console.log(`${charact} no es un caracter. Introduce uno válido.`);
+        return;
+    }
+
+    //Ponemos la palabra en minúscula, quitamos los posibles espacios y pasamos a array.
     let arr = str.toLowerCase().replace(/\s+/g, '').split("");
     console.log("La palabra convertida en array es: ", arr);
 
@@ -32,10 +37,20 @@ function characterCounter(str, charact) {
        return acc;
 
     }, 0); 
+
+    //Con find:
+    
+    /*let count =0;
+
+    arr.find((element) => {
+        if (element === charactLower) {
+            count ++;
+        }
+    });*/
     
     console.log(`El caracter '${charactLower}' aparece ${count} veces.`);
 
 }
 
 
-//characterCounter("a lo Ha", "a");
+//characterCounter("a lo Haa", "a");

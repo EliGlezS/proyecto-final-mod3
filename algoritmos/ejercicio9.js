@@ -5,20 +5,20 @@ calendario Gregoriano, teniendo en cuenta que los años posteriores a 1582 y has
 en el que se consideraba solo si el año es divisible entre 4, en cambio con el gregoriano se tiene que 
 tener en cuenta que sea divisible entre 400 y que sea divisible entre 4 y no entre 100*/
 
-function leapYear (anno){
+function leapYear (year){
     //verificación para que lo que se introduce es un año
-    if(typeof anno !== 'number'){
+    if(typeof year !== 'number'){
         console.log("Introduce un año, usando números");
     }
 
     //verificación por si un año es negativo
-    if(anno < -45 ){
+    if(year < -45 ){
         console.log("Introduce un año válido");
-    }else if(anno >= -45 && anno < 1582){
+    }else if(year >= -45 && year < 1582){
         //Calendario Juliano
-        (anno % 4 == 0) ? console.log(`El año ${anno} es bisiesto según el calendario Juliano.`) : console.log(`El año ${anno} no es bisiesto según el calendario Juliano.`);
+        (year % 4 == 0) ? console.log(`El año ${year} es bisiesto según el calendario Juliano.`) : console.log(`El año ${year} no es bisiesto según el calendario Juliano.`);
     }else{ //Calendario Gregoriano
-        (anno % 4 === 0 && anno % 100 !== 0) || (anno % 400 === 0) ? console.log(`El año ${anno} es bisiesto según el calendario Gregoriano.`) : console.log(`El año ${anno} no es bisiesto según el calendario Gregoriano.`);
+        (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0) ? console.log(`El año ${year} es bisiesto según el calendario Gregoriano.`) : console.log(`El año ${year} no es bisiesto según el calendario Gregoriano.`);
     }
 }
 

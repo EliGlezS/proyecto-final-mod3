@@ -52,18 +52,26 @@ function searchSecondHighNumber(arr){
 
 //Solución sin input
 
-//let arr= [8, 30, 60, 7, 15, -1];
+let arr= [8, 30, -20, 7, 15, -1];
 
     
 function searchSecondHighNumber(arr){
+    //verificar que el arr introducido es solo de números
+    let verificationArrNumber = arr.every(element => typeof element === "number"); //true o false
+
+    if(verificationArrNumber === false){
+        console.log("Introduce un array solo de números.");
+        return;
+    }
+
     console.log("Este es el array introducido: ", arr);
     let arrAscendingOrder = arr.sort((a,b) => {
         return a-b;
     });
 
-    //console.log("Este es el array ordenado de manera ascendente: ", arrAscendingOrder);
-    let arrSearchSecondNumber = arrAscendingOrder[arrAscendingOrder.length-2];
-    //console.log("Este es el el segundo número más grande en este array:  ",arrSearchSecondNumber);
+    console.log("Este es el array ordenado de manera ascendente: ", arrAscendingOrder);
+    let arrSearchSecondNumber = arrAscendingOrder[arrAscendingOrder.length - 2];
+    console.log("Este es el segundo número más grande en este array:  ",arrSearchSecondNumber);
 
 }
 

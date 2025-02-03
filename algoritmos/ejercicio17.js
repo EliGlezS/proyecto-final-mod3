@@ -2,7 +2,7 @@
 
 function parenthesesBalance(str) {
 
-    //pasamos a array el string pasado como argumento
+    //pasamos a array el string introducido como argumento
     let strToArr = str.split("");
     console.log(strToArr);
 
@@ -17,7 +17,7 @@ function parenthesesBalance(str) {
 
     /*Comprobamos si la longitud de amnbos arrays es la misma, lo que indica que hay
     los mismos paréntesis de apertua que de cierre, en caso de que haya más de 
-    uno que de otro tipo quiere decir que no están balanceados*/
+    un tipo que de otro quiere decir que no están balanceados*/
 
     if (parenthesesOpen.length === parenthesesClose.length) {
         console.log("Los paréntesis están balanceados");

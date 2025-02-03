@@ -5,8 +5,10 @@ let arrayNumber = [3, 5, 50, 20, 2];
 
 
 function checkOnlyNumber(arr) {
-    // Filtramos solo los números del array
+    
     console.log(`Este es el array original: ${arr}`);
+
+    // Filtramos solo los elementos tipo números del array.
     let filteredArray = arr.filter(item => typeof item === "number");
 
     /*Comprobamos si el array contiene solo números (Si el array fiiltrado tiene una longitud menor 

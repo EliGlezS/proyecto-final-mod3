@@ -1,7 +1,7 @@
 //6 - Crear un programa que calcule el número Fibonacci en la posición (n).
 
 /*A continuación se harán dos formas para realizar este ejercicio, uno de ellos teniendo en cuenta un array 
-vacío en el que el 0 y 1 se pondrán con la función realizada y por otro lado se forzará al array a tener esos 
+vacío en el que el 0 y 1 se pondrán con la función realizada y por otro, lado se forzará al array a tener esos 
 dos valores dentro de el*/
 
 //Fibonacci: donde el array creado ya tiene el número 0 y 1 

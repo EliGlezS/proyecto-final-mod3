@@ -22,7 +22,7 @@ function leetSpeak(string){
         'x': '%'
     };
     
-    /*Pasamos el string a minusculas ya que en el objeto solo se tuvo en cuenta los valores para la clave en minuscula
+    /*Pasamos el string a minusculas ya que en el objeto solo se tuvo en cuenta los valores para las claves en minúscula
     , una vez realizado el cambio se pasa a array, para usar map (es decir crea un nuevo array
     transformando los elementos según la condición dada) por tanto dentro buscamos el valor si lo hay en el objeto creado
     y si existe valor asociado a ese elemento lo reemplaza o bien si no hay coincidencia mantiene el elemento original. */

@@ -3,6 +3,8 @@
 //Hacemos una funcion que determine si un numero es primo o no 
 
 function primeNumber(number) {
+
+    //si los números son menores 
     if (number <= 1) {
         console.log("El número introducido no puede ser primo.");
         return;
@@ -23,6 +25,11 @@ function primeNumber(number) {
 }
 
 function primeNumbersUntilN(num) {
+    //Compruebo que el número que se introduce sea un número válido
+    if (isNaN(num)) {
+        console.log("Introduce un número válido.");
+        return;
+    }
     /*creo un array vacío que se llenará con los números primos que vengan de la verificación
     de la función anterior*/
     

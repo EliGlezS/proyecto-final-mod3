@@ -20,7 +20,7 @@ function millisecondsMidnight() {
     console.log(midnight);
 
     /*con nowHour.getTime() sacamos los milisegundos desde la medianoche del la medianoche del 1 de enero de 1970 hasta la hora actual.
-    y de midnight.getTime() sacamos los milisegundos desde desde la medianoche del la medianoche del 1 de enero de 1970 hasta la medianoche de "hoy"
+    y de midnight.getTime() sacamos los milisegundos desde desde la medianoche del 1 de enero de 1970 hasta la medianoche de "hoy"
     si restamos ambas nos da los milisegundos desde la medianoche hasta la hora actual en la que se ejecute el código*/
     const calcElapsedMiilliseconds = nowHour.getTime() - midnight.getTime();
     console.log(calcElapsedMiilliseconds);

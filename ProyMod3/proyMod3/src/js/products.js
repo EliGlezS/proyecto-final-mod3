@@ -18,15 +18,22 @@ async function getAllProducts() {
             throw new Error("Request failure", response.status);
         }
 
-        const data = await response.json();
-        console.log(data);
+        return await response.json();
+        
 
     } catch (error) {
         console.error("Error fetching products", error);
     }
 }
 
-//getAllProducts();
+getAllProducts()
+    .then((resultado) => {
+        displayProducts(resultado);
+    })
+    .catch((error) => {
+        console.error("Error fetching products:", error);
+    });
+
 
 //Petición POST (crear un nuevo producto)
 
@@ -111,4 +118,63 @@ async function deleteProduct(id) { //borramos el producto de la id especificada
     } catch (error) {
         console.error("Error deleting product:", error);
     }
+}
+
+
+//Funciones manejadoras 
+
+//funcion para mostrar todos los productos (todos estos productos vienen de la petición)
+
+function displayProducts(products) {//a esta función se le deben pasar los datos obtenidos con la peticion del get
+
+    //Localizamos en js el contenedor donde iran las cartas y que ya está en el html
+    const productsContainer = document.getElementById("products-container");
+
+    //Limpiamos o vaciamos el contenido HTML dentro de mi productsContainer
+    productsContainer.innerHTML="";
+
+    //Creamos un contenedor donde irán todo lo que quiero enseñar de cada producto (usamos un forEach para iterar y crear ese contenedor por cada uno)
+    products.forEach((product) => {
+        //creamos por cada producto un contenedor
+        const productCard = document.createElement("div");
+
+        //Le damos un id al elemento creado
+        productCard.id = `product-${product.id}`; //el id de las tarjetas son : product-01, product-02....
+        productCard.className = "product-card"; //REVISAR esta parte
+
+        //creamos dos contenedores uno para la informacion y otro para los botones de edit y delete y le damos una clase a cada uno
+        const cardInfo = document.createElement("div");
+        const cardButtons = document.createElement("div");
+
+        cardInfo.className = "card-info";
+        cardButtons.className = "card-buttons";
+
+        //metemos los dos div dentro de productCard
+        productCard.appendChild(cardInfo);
+        productCard.appendChild(cardButtons);
+
+        //añadimos una plantilla literal para generar un html con las siguientes partes en la cardInfo dentro de productCard:
+        cardInfo.innerHTML= `
+            <img src="${product.image}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p>${product.description}</p>
+            <p>${product.price} €</p>`;
+
+        //creamos un boton de delete y edit
+        const buttonDelete = document.createElement("button");
+        const buttonEdit = document.createElement("button");
+
+        buttonDelete.textContent = "Delete";
+        buttonEdit.textContent = "Edit";
+
+        //inyectamos los dos botones en el contenedor cardButtons
+        cardButtons.appendChild(buttonEdit);
+        cardButtons.appendChild(buttonDelete);
+
+        //lo inyectamos en el DOM
+        productsContainer.appendChild(productCard);
+
+    });
+
+   
 }

@@ -135,8 +135,11 @@ async function editProduct(obj, id) {//hay que pasarle los datos a cambiar y el 
             throw new Error("Request failure", response.status);
         }
 
-        const result = response.json();
+        const result = await response.json();
         console.log(result);
+
+        //Aquí también puedo poner la lógica para repintar el producto (en ambos caso aquí o abajo me puedo crear una función)
+        //repaint(obj, id);
 
     } catch (error) {
         console.error("Error editing product:", error);
@@ -280,8 +283,9 @@ function editAndShowForm(evento){
             console.log(updatedProduct);
             console.log(event);
             await editProduct(updatedProduct, productId);
+            //Aquí puedo hacer una lógica para repintar la tarjeta 
+            repaint(updatedProduct, productId);
 
-            
         })
 
     })
@@ -295,7 +299,13 @@ function editAndShowForm(evento){
 }
 
 
-
+function repaint(obj, id) {
+    //funcion de repintar una card 
+    const cardProductId = `product-${id}`;
+    const title = document.querySelector(`#${cardProductId} .card-info h3`);
+    title.textContent = obj.title;
+    //console.log(card);
+}
 
 
 

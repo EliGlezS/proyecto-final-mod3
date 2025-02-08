@@ -4,7 +4,7 @@
 
 const API_BASE_URL = "https://fakestoreapi.com";
 
-//----PETICIONES-------
+//--------------------------------------PETICIONES---------------------------------------------
 
 //Petición GET (para traer todos los productos)
 
@@ -33,41 +33,6 @@ getAllProducts()
     .catch((error) => {  
         console.error("Error fetching products:", error);
 });
-
-
-    //fake offline
-    /*const products = [
-        {
-          image: "https://example.com/image1.jpg",
-          title: "Producto 1",
-          description: "Descripción del producto 1",
-          price: 19.99,
-          category: "Electrónica"
-        },
-        {
-          image: "https://example.com/image2.jpg",
-          title: "Producto 2",
-          description: "Descripción del producto 2",
-          price: 29.99,
-          category: "Ropa"
-        },
-        {
-          image: "https://example.com/image3.jpg",
-          title: "Producto 3",
-          description: "Descripción del producto 3",
-          price: 9.99,
-          category: "Alimentación"
-        },
-        {
-          image: "https://example.com/image4.jpg",
-          title: "Producto 4",
-          description: "Descripción del producto 4",
-          price: 49.99,
-          category: "Hogar"
-        }
-      ];
-
-    displayProducts(products);*/
 
 
 //Petición GET (traer solo un producto)
@@ -115,7 +80,6 @@ async function createNewProduct(obj) { //obj pendiente de cambio
     }
 }
 
-//createNewProduct(product);
 
 //Petición PUT (editar un producto existente)
 
@@ -169,7 +133,7 @@ async function deleteProduct(id) { //borramos el producto de la id especificada
 }
 
 
-//Funciones manejadoras 
+//----------------------------------Funciones manejadoras------------------------------------------ 
 
 //funcion para mostrar todos los productos (todos estos productos vienen de la petición)
 
@@ -228,8 +192,12 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
         cardButtons.appendChild(buttonDelete);
 
         //Añadimos eventos a los botones
-        buttonEdit.addEventListener("click", (evento) => {
-            editAndShowForm(evento);
+        buttonEdit.addEventListener("click", (event) => {
+            editAndShowForm(event);
+        })
+
+        buttonDelete.addEventListener("click", async (event) => {
+            deleteProductToDOM(event);
         })
 
         //lo inyectamos en el DOM
@@ -238,7 +206,9 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
     });
 }
 
-//3
+/*función para editar un producto (al darle al botón edit del producto y que aparezca un 
+formulario con los datos del producto a editar)*/
+
 function editAndShowForm(event){
     const buttonId = event.target;
     console.log(buttonId);
@@ -247,6 +217,9 @@ function editAndShowForm(event){
     console.log(productId);
 
     const containerForm = document.getElementById("products-form");
+
+    //mostrar el formulario si está oculto
+    containerForm.style.display = 'block'; // Nos aseguramos que el contenedor sea visible
 
     containerForm.innerHTML="";
 
@@ -281,9 +254,24 @@ function editAndShowForm(event){
             console.log(updatedProduct);
 
             await editProduct(updatedProduct, productId);
-            //Aquí puedo hacer una lógica para repintar la tarjeta 
+            //Aquí puedo hacer una lógica para repintar la tarjeta o llamar directamente a una función que tenga incluida esa lógica
             repaint(updatedProduct, productId);
+
+
+            //BOTÓN SEND DEL FORMULARIO
+
+            //Con este paso se logra una vez hace el send, el contenedor de ese formulario pase a display none y se deje de visualizar
+            
+            //selección del contenedor del formulario 
+            const containerFormEdit = document.getElementById("products-form");
+
+            //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+            toggleDisplay(containerFormEdit);
+            
+
         });
+
+        //BOTÓN CANCEL DEL FORMULARIO
 
         //Creo la funcionalidad del botón cancel del formulario editar
         const buttonCancel = document.querySelector(`.button-reset`);
@@ -291,11 +279,12 @@ function editAndShowForm(event){
         buttonCancel.addEventListener("click", (event) =>{
         event.preventDefault();
 
-        //selección del contenedor del formulario o el formulario
+        //selección del contenedor del formulario 
         const containerFormEdit = document.getElementById("products-form");
-        console.log(containerFormEdit);
-        //Llamamos a la función de toggleDisplay y le pasamos el container 
+
+        //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
         toggleDisplay(containerFormEdit);
+
         });
 
     })
@@ -339,21 +328,43 @@ function repaint(obj, id) {
 }
 
 
+//Función para borrar una card de un producto
 
-//función para que el formulario aparezca y desaparezca si apreto el botón cancel del formulario 
+async function deleteProductToDOM(event) {
+    const buttonId = event.target;
+    console.log(buttonId);
+
+    const productId = buttonId.id.replace('buttonDelete-', '');
+    console.log(productId);
+
+    const productCard = document.getElementById(`product-${productId}`);
+    console.log(productCard);
+
+    await deleteProduct(productId);
+
+    if (productCard) {
+        productCard.remove();
+        console.log(productCard);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------Funciones Aux----------------------------------------------
+
+//función para que que un elemento sea visible o invisible.
 
 function toggleDisplay(element) {
-    element.style.display === "none" ? element.style.display = "block" : element.style.display = "none";
+    element.style.display === "block" ? element.style.display = "none" : element.style.display = "block";
     console.log(element);
-    
-     // Si el display es "none", lo cambiamos a "block" para mostrarlo
-    // Si no es "none", lo cambiamos a "none" para ocultarlo
-    /*if (element.style.display === "none" || element.style.display === "") {
-        element.style.display = "block";  // Mostrar el formulario
-    } else {
-        element.style.display = "none";  // Ocultar el formulario
-    }
-    console.log(element);*/
 }
 
 

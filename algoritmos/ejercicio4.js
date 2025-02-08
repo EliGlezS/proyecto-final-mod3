@@ -6,8 +6,9 @@ Luego de comprobar esa condición, se hace un bucle for que multipica y asigna a
 el número introducido.*/
 
 function factorialFunction (number) {
-
-    if (number > 0) {
+    if (number === 0) {
+        console.log(`El factorial de ${number} es: 1`);
+    } else if (number > 0) {
         let factorialResult = 1;
         for (let i = 1; i <= number; i++) {
             factorialResult *= i;

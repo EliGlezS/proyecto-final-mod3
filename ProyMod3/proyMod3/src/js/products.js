@@ -207,11 +207,11 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
 
         //añadimos una plantilla literal para generar un html con las siguientes partes en la cardInfo dentro de productCard:
         cardInfo.innerHTML= `
-            <img src="${product.image}" alt="${product.title}">
+            <img class="product-img" src="${product.image}" alt="${product.title}">
             <h3>${product.title}</h3>
-            <p>${product.description}</p>
-            <p>${product.price} €</p>
-            <p>${product.category}</p>`; //Esto tiene que ir oculto porque no quiero mostrarlo (display: none)
+            <p class="product-description">${product.description}</p>
+            <p class="product-price">${product.price} €</p>
+            <p class="product-category">${product.category}</p>`; //Esto tiene que ir oculto porque no quiero mostrarlo (display: none)
 
         //creamos un boton de delete y edit
         const buttonDelete = document.createElement("button");
@@ -239,8 +239,8 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
 }
 
 //3
-function editAndShowForm(evento){
-    const buttonId = evento.target;
+function editAndShowForm(event){
+    const buttonId = event.target;
     console.log(buttonId);
 
     const productId = buttonId.id.replace('buttonEdit-', '');
@@ -251,8 +251,6 @@ function editAndShowForm(evento){
     containerForm.innerHTML="";
 
     const form = document.createElement("form");
-
-    containerForm.appendChild(form);
 
     getProduct(productId) //Tengo que añadir aquí un título que segun el botón que toque salga un título u otro
     .then((product) => {
@@ -268,8 +266,8 @@ function editAndShowForm(evento){
         <label for="category">Category: </label>
         <input type="text" name="category" id="category" value="${product.category}" required>
         
-        <button type="submit">Send</button>
-        <button type="reset">Cancel</button>`;
+        <button class="button-submit" type="submit">Send</button>
+        <button class="button-reset" type="reset">Cancel</button>`;
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -281,36 +279,82 @@ function editAndShowForm(evento){
                 category: event.target.category.value,
             }
             console.log(updatedProduct);
-            console.log(event);
+
             await editProduct(updatedProduct, productId);
             //Aquí puedo hacer una lógica para repintar la tarjeta 
             repaint(updatedProduct, productId);
+        });
 
-        })
+        //Creo la funcionalidad del botón cancel del formulario editar
+        const buttonCancel = document.querySelector(`.button-reset`);
+        console.log(buttonCancel);
+        buttonCancel.addEventListener("click", (event) =>{
+        event.preventDefault();
+
+        //selección del contenedor del formulario o el formulario
+        const containerFormEdit = document.getElementById("products-form");
+        console.log(containerFormEdit);
+        //Llamamos a la función de toggleDisplay y le pasamos el container 
+        toggleDisplay(containerFormEdit);
+        });
 
     })
     .catch((error) => {  
         console.error("Error fetching products:", error);
     });
 
+    containerForm.appendChild(form);
 
-   
+    /*AQUI SE PUEDE PONER EL TOGGLEDISPLAY PARA HACER QUE APAREZCA Y DESAPAREZCA PERO NO QUEDA BIEN
+    DAR A EDIT DE OTRO PRODUCTO Y QUE DESAPAREZCA Y TENGA QUE VOLVER A DARLE. PREFIERO DAR ESA FUNCIONALIDAD 
+    AL BOTÓN CANCEL CON LA ÚNICA CONDICIÓN QUE SI ES BLOCK EL FORMULARIO ME HAGA NONE*/
 
 }
 
-
+//funcion de repintar una card
 function repaint(obj, id) {
-    //funcion de repintar una card 
+    //Localizar a la card que se quiere repintar
     const cardProductId = `product-${id}`;
+
+    /*Seleccionar el elemento h3 dentro de .card-info en el contenedor con id #cardProductId y luego 
+    cambiamos el contenido de ese h3 por el titulo del objeto creado a través del form. Se hará para todas
+    las propiedades del objeto a editar*/
+
+    //Imagen
+    const img = document.querySelector(`#${cardProductId} .card-info .product-img`);
+    img.src = obj.image;
+    //Título
     const title = document.querySelector(`#${cardProductId} .card-info h3`);
     title.textContent = obj.title;
-    //console.log(card);
+    //Descripción
+    const description = document.querySelector(`#${cardProductId} .card-info .product-description`);
+    description.textContent = obj.description;
+    //Precio
+    const price = document.querySelector(`#${cardProductId} .card-info .product-price`);
+    price.textContent = obj.price;
+    //Categoria
+    const category = document.querySelector(`#${cardProductId} .card-info .product-category`);
+    category.textContent = obj.category;
+    
 }
 
 
 
+//función para que el formulario aparezca y desaparezca si apreto el botón cancel del formulario 
 
-
+function toggleDisplay(element) {
+    element.style.display === "none" ? element.style.display = "block" : element.style.display = "none";
+    console.log(element);
+    
+     // Si el display es "none", lo cambiamos a "block" para mostrarlo
+    // Si no es "none", lo cambiamos a "none" para ocultarlo
+    /*if (element.style.display === "none" || element.style.display === "") {
+        element.style.display = "block";  // Mostrar el formulario
+    } else {
+        element.style.display = "none";  // Ocultar el formulario
+    }
+    console.log(element);*/
+}
 
 
 

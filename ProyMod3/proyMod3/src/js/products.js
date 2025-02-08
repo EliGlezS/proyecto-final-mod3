@@ -196,7 +196,7 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
             editAndShowForm(event);
         })
 
-        buttonDelete.addEventListener("click", async (event) => {
+        buttonDelete.addEventListener("click", (event) => {
             deleteProductToDOM(event);
         })
 
@@ -204,6 +204,8 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
         productsContainer.appendChild(productCard);
 
     });
+
+
 }
 
 /*función para editar un producto (al darle al botón edit del producto y que aparezca un 
@@ -350,7 +352,104 @@ async function deleteProductToDOM(event) {
 
 
 
+//Función para agregar un producto nuevo 
 
+function addNewProductToDOM(product) {
+
+    //Localizamos en js el contenedor donde irá la carta del nuevo producto
+    const productsContainer = document.getElementById("products-container");
+
+    //Localizamos en mi html desde js el contenedor (div) para el botón add
+
+    const buttonAddContainer = document.getElementById("container-addButton");
+
+    //Localizamos el botón del html
+    const addNewProductButton = document.querySelector("#container-addButton .addProduct");
+    
+    //El botón tiene un evento
+
+    addNewProductButton.addEventListener("click", () => {
+
+        const containerForm = document.getElementById("products-form");
+        containerForm.style.display = 'block'; // Nos aseguramos que el contenedor sea visible
+
+        //Creamos un formulario para añadir los datos del producto nuevo
+        const formAdd = document.createElement("form");
+
+        formAdd.innerHTML= `
+        <label for="title">Title Product: </label>
+        <input type="text" name="title" id="title" required>
+        <label for="price">Price:</label>
+        <input type="text" name="price" id="price" required>
+        <label for="description">Description: </label>
+        <input type="text" name="description" id="description" required>
+        <label for="image">Image url: </label>
+        <input type="text" name="image" id="image" required>
+        <label for="category">Category: </label>
+        <input type="text" name="category" id="category" required>
+        
+        <button class="button-submit" type="submit">Send</button>
+        <button class="button-reset" type="reset">Cancel</button>`;
+
+        formAdd.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const addProduct = {
+                title: event.target.title.value,
+                price: event.target.price.value,
+                description: event.target.description.value,
+                image: event.target.image.value,
+                category: event.target.category.value,
+            }
+            console.log(addProduct);
+
+            await createNewProduct(addProduct);
+
+            const cardInfo = document.createElement("div");
+            cardInfo.className = "card-info";
+
+            //Aquí puedo hacer una lógica para pintar una nueva tarjeta o hacer esta parte función para solo llamarla y evitar duplicar código
+            cardInfo.innerHTML= `
+            <img class="product-img" src="${product.image}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p class="product-description">${product.description}</p>
+            <p class="product-price">${product.price} €</p>
+            <p class="product-category">${product.category}</p>`; //Esto tiene que ir oculto porque no quiero mostrarlo (display: none)
+
+
+            //BOTÓN SEND DEL FORMULARIO
+
+            //Con este paso se logra una vez hace el send, el contenedor de ese formulario pase a display none y se deje de visualizar
+            
+            //selección del contenedor del formulario 
+            const containerFormAdd = document.getElementById("products-form");
+
+            //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+            toggleDisplay(containerFormAdd);
+            
+
+        });
+
+        //BOTÓN CANCEL DEL FORMULARIO
+
+        //Creo la funcionalidad del botón cancel del formulario editar
+        const buttonCancel = document.querySelector(`.button-reset`);
+        console.log(buttonCancel);
+        buttonCancel.addEventListener("click", (event) =>{
+        event.preventDefault();
+
+        //selección del contenedor del formulario 
+        const containerFormAdd = document.getElementById("products-form");
+
+        //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+        toggleDisplay(containerFormAdd);
+
+        });
+
+    })
+
+    containerForm.appendChild(formAdd);
+    
+}
 
 
 

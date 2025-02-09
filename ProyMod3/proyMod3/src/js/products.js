@@ -376,6 +376,8 @@ function addNewProductToDOM(product) {
         //Creamos un formulario para añadir los datos del producto nuevo
         const formAdd = document.createElement("form");
 
+        containerForm.appendChild(formAdd);
+
         formAdd.innerHTML= `
         <label for="title">Title Product: </label>
         <input type="text" name="title" id="title" required>
@@ -447,7 +449,7 @@ function addNewProductToDOM(product) {
 
     })
 
-    containerForm.appendChild(formAdd);
+   //aquí quité el appenchild del formulario revisar mañana
     
 }
 

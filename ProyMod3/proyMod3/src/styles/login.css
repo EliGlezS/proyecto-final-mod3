@@ -22,7 +22,10 @@
 /*Estilos para el main*/
 
 #main-login{
-    
+    background-image: url(https://i.pinimg.com/736x/35/e8/69/35e86976c12b01a484b447bb0e324fb5.jpg);
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+    background-position: center; /* Centra la imagen dentro del contenedor */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -43,10 +46,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         border: 1px solid rgb(99, 94, 94);
         background-color: rgb(194, 189, 189);
         border-radius: 1.5em;
-        width: 300px;
+        width: 350px;
+        height: 300px;
         padding: 30px;
 
         label{
@@ -57,7 +62,7 @@
         input{
             border: 1px solid rgb(145, 138, 138);
             border-radius: 5px;
-            width: fit-content;
+            width: 240px;
             height: 30px;
             padding-left: 5px;
         }
@@ -96,7 +101,6 @@
     min-width: 350px;
     height: fit-content;
     padding: 10px 20px;
-    margin-top: 30px;
     gap: 5px;
 
     .footer-logo{
@@ -137,7 +141,7 @@
         justify-content: space-evenly;
         align-items: center;
         flex-direction: row;
-        width: 10%;
+        width: 200px;
         gap: 20px;
         
         

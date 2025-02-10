@@ -7,8 +7,7 @@ const API_BASE_URL = "https://fakestoreapi.com";
 //--------------------------------------PETICIONES---------------------------------------------
 
 //Petición GET (para traer todos los productos)
-
-async function getAllProducts() {
+/*async function getAllProducts() {
     const url = `${API_BASE_URL}/products`;
 
     try {
@@ -24,7 +23,7 @@ async function getAllProducts() {
     } catch (error) {
         console.error("Error fetching products", error);
     }
-}
+}*/
 
 /*getAllProducts()
     .then((resultado) => {
@@ -59,7 +58,7 @@ const resultado = [
 
 
 //Petición GET (traer solo un producto)
-async function getProduct(id) {
+/*async function getProduct(id) {
     const url = `${API_BASE_URL}/products/${id}`;
 
     try {
@@ -153,7 +152,7 @@ async function deleteProduct(id) { //borramos el producto de la id especificada
     } catch (error) {
         console.error("Error deleting product:", error);
     }
-}
+}*/
 
 
 //----------------------------------Funciones manejadoras------------------------------------------ 
@@ -244,6 +243,8 @@ function createProduct(product, productsContainer) {
 
 /*función para editar un producto (al darle al botón edit del producto y que aparezca un 
 formulario con los datos del producto a editar)*/
+
+//Cambiar function editAndShowForm con sync y ponerle un await getProduct y cambiar todo
 
 function editAndShowForm(event){
     const buttonId = event.target;

@@ -193,7 +193,7 @@ main{
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 60%;
+                    width: 200px;
                     height: 50px;
                     gap: 20px; 
 
@@ -216,6 +216,31 @@ main{
                 transform: scale(1.02); /* Aumenta el tamaño en un 10% */
                 box-shadow: 0 3px 8px rgb(135, 108, 138); /* Agrega sombra para resaltar */
             }
+        }
+
+        #container-addButton{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            min-width: 336px;
+            height: 50px;
+            margin-bottom: 50px;
+
+            .addProduct{
+                width: 200px;
+                border: 1px solid rgb(145, 138, 138);
+                border-radius: 5px; 
+            }
+            .addProduct:hover{
+                border: 1px solid rgb(85, 68, 87);
+                background-color: rgb(123, 112, 124);
+                color: white;
+                font-weight: bold;
+            }
+
+
+
+
         }
 
     }

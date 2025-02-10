@@ -265,19 +265,25 @@ function editAndShowForm(event){
     getProduct(productId) //Tengo que añadir aquí un título que segun el botón que toque salga un título u otro
     .then((product) => {
         form.innerHTML= `
-        <label for="title">Title Product: </label>
-        <input type="text" name="title" id="title" value="${product.title}" required>
-        <label for="price">Price:</label>
-        <input type="text" name="price" id="price" value="${product.price}" required>
-        <label for="description">Description: </label>
-        <input type="text" name="description" id="description" value="${product.description}" required>
-        <label for="image">Image url: </label>
-        <input type="text" name="image" id="image" value="${product.image}" required>
-        <label for="category">Category: </label>
-        <input type="text" name="category" id="category" value="${product.category}" required>
-        
-        <button class="button-submit" type="submit">Send</button>
-        <button class="button-reset" type="reset">Cancel</button>`;
+        <div id="modalBoxEdit" class="modal">
+            <div class="modal-content">
+                <span class="close"> &times;</span>
+                <h3>Edit Product Form</h3>
+                <label for="title">Title Product: </label>
+                <input type="text" name="title" id="title" value="${product.title}" required>
+                <label for="price">Price:</label>
+                <input type="text" name="price" id="price" value="${product.price}" required>
+                <label for="description">Description: </label>
+                <input type="text" name="description" id="description" value="${product.description}" required>
+                <label for="image">Image url: </label>
+                <input type="text" name="image" id="image" value="${product.image}" required>
+                <label for="category">Category: </label>
+                <input type="text" name="category" id="category" value="${product.category}" required>
+                
+                <button class="button-submit" type="submit">Send</button>
+                <button class="button-reset" type="reset">Cancel</button>
+            </div>
+        </div>`;
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -311,17 +317,17 @@ function editAndShowForm(event){
         //BOTÓN CANCEL DEL FORMULARIO
 
         //Creo la funcionalidad del botón cancel del formulario editar
-        const buttonCancel = document.querySelector(`.button-reset`);
+        const buttonCancel = document.querySelector(`#modalBoxEdit .button-reset`);
         console.log(buttonCancel);
         buttonCancel.addEventListener("click", (event) =>{
-        event.preventDefault();
+             toggleContainerForm(event);
+        });
 
-        //selección del contenedor del formulario 
-        const containerFormEdit = document.getElementById("products-form");
+        //SPAN PARA CERRAR EL FORMULARIO 
 
-        //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
-        toggleDisplay(containerFormEdit);
-
+        const spanForm = document.querySelector("#modalBoxEdit .close");
+        spanForm.addEventListener("click", (event) =>{
+            toggleContainerForm(event);
         });
 
     })
@@ -415,19 +421,26 @@ function addNewProductToDOM() {
         containerForm.appendChild(formAdd);
 
         formAdd.innerHTML= `
-        <label for="title">Title Product: </label>
-        <input type="text" name="title" id="title" required>
-        <label for="price">Price:</label>
-        <input type="text" name="price" id="price" required>
-        <label for="description">Description: </label>
-        <input type="text" name="description" id="description" required>
-        <label for="image">Image url: </label>
-        <input type="text" name="image" id="image" required>
-        <label for="category">Category: </label>
-        <input type="text" name="category" id="category" required>
-        
-        <button class="button-submit" type="submit">Send</button>
-        <button class="button-reset" type="reset">Cancel</button>`;
+
+        <div id="modalBoxAdd" class="modal">
+            <div class="modal-content">
+                <span class="close"> &times;</span>
+                    <h3>Add New Product Form</h3>
+                    <label for="title">Title Product: </label>
+                    <input type="text" name="title" id="title" required>
+                    <label for="price">Price:</label>
+                    <input type="text" name="price" id="price" required>
+                    <label for="description">Description: </label>
+                    <input type="text" name="description" id="description" required>
+                    <label for="image">Image url: </label>
+                    <input type="text" name="image" id="image" required>
+                    <label for="category">Category: </label>
+                    <input type="text" name="category" id="category" required>
+                    
+                    <button class="button-submit" type="submit">Send</button>
+                    <button class="button-reset" type="reset">Cancel</button>
+            </div>
+        </div>`;
 
         formAdd.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -458,14 +471,15 @@ function addNewProductToDOM() {
         const buttonCancel = document.querySelector(".button-reset");
         console.log(buttonCancel);
         buttonCancel.addEventListener("click", (event) =>{
-        event.preventDefault();
+           toggleContainerForm(event);
+        });
 
-        //selección del contenedor del formulario 
-        const containerFormAdd = document.getElementById("products-form");
+        //SPAN PARA CERRAR EL FORMULARIO 
 
-        //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
-        toggleDisplay(containerFormAdd);
-
+        const spanForm = document.querySelector("#modalBoxAdd .close");
+        spanForm.addEventListener("click", (event) =>{
+            toggleContainerForm(event);
+    
         });
 
     })
@@ -477,9 +491,6 @@ function addNewProductToDOM() {
 
 
 
-
-
-
 //---------------------------------------Funciones Aux----------------------------------------------
 
 //función para que que un elemento sea visible o invisible.
@@ -487,6 +498,17 @@ function addNewProductToDOM() {
 function toggleDisplay(element) {
     element.style.display === "block" ? element.style.display = "none" : element.style.display = "block";
     console.log(element);
+}
+
+//Función interruptor para cerrar los formularios
+function toggleContainerForm(event) {
+    event.preventDefault();
+
+    //selección del contenedor del formulario 
+    const containerFormAdd = document.getElementById("products-form");
+
+    //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+    toggleDisplay(containerFormAdd);
 }
 
 

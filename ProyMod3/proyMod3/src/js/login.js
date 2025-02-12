@@ -1,4 +1,3 @@
-console.log("HOLA");
 //URL_BASE de la API
 
 const AUTH_URL = "https://fakestoreapi.com/auth/login";

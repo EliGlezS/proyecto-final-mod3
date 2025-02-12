@@ -260,30 +260,35 @@ function editAndShowForm(event){
 
     containerForm.innerHTML="";
 
-    const form = document.createElement("form");
+    //const form = document.createElement("form");
 
     getProduct(productId) //Tengo que añadir aquí un título que segun el botón que toque salga un título u otro
     .then((product) => {
-        form.innerHTML= `
+        containerForm.innerHTML= `
         <div id="modalBoxEdit" class="modal">
             <div class="modal-content">
-                <span class="close"> &times;</span>
-                <h3>Edit Product Form</h3>
-                <label for="title">Title Product: </label>
-                <input type="text" name="title" id="title" value="${product.title}" required>
-                <label for="price">Price:</label>
-                <input type="text" name="price" id="price" value="${product.price}" required>
-                <label for="description">Description: </label>
-                <input type="text" name="description" id="description" value="${product.description}" required>
-                <label for="image">Image url: </label>
-                <input type="text" name="image" id="image" value="${product.image}" required>
-                <label for="category">Category: </label>
-                <input type="text" name="category" id="category" value="${product.category}" required>
-                
-                <button class="button-submit" type="submit">Send</button>
-                <button class="button-reset" type="reset">Cancel</button>
+                <form>
+                    <span class="close"> &times;</span>
+                    <h3>Edit Product Form</h3>
+                    <label for="title">Title Product: </label>
+                    <input type="text" name="title" id="title" value="${product.title}" required>
+                    <label for="price">Price:</label>
+                    <input type="text" name="price" id="price" value="${product.price}" required>
+                    <label for="description">Description: </label>
+                    <input type="text" name="description" id="description" value="${product.description}" required>
+                    <label for="image">Image url: </label>
+                    <input type="text" name="image" id="image" value="${product.image}" required>
+                    <label for="category">Category: </label>
+                    <input type="text" name="category" id="category" value="${product.category}" required>
+                    <div>
+                        <button class="button-submit" type="submit">Send</button>
+                        <button class="button-reset" type="reset">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>`;
+
+        const form = document.querySelector("#modalBoxEdit form");
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -335,7 +340,7 @@ function editAndShowForm(event){
         console.error("Error fetching products:", error);
     });
 
-    containerForm.appendChild(form);
+    //containerForm.appendChild(form);
 
     /*AQUI SE PUEDE PONER EL TOGGLEDISPLAY PARA HACER QUE APAREZCA Y DESAPAREZCA PERO NO QUEDA BIEN
     DAR A EDIT DE OTRO PRODUCTO Y QUE DESAPAREZCA Y TENGA QUE VOLVER A DARLE. PREFIERO DAR ESA FUNCIONALIDAD 
@@ -416,15 +421,16 @@ function addNewProductToDOM() {
         containerForm.innerHTML="";
 
         //Creamos un formulario para añadir los datos del producto nuevo
-        const formAdd = document.createElement("form");
+        //const formAdd = document.createElement("form");
 
-        containerForm.appendChild(formAdd);
+        //containerForm.appendChild(formAdd);
 
-        formAdd.innerHTML= `
+        containerForm.innerHTML= `
 
         <div id="modalBoxAdd" class="modal">
             <div class="modal-content">
-                <span class="close"> &times;</span>
+                <form>
+                    <span class="close"> &times;</span>
                     <h3>Add New Product Form</h3>
                     <label for="title">Title Product: </label>
                     <input type="text" name="title" id="title" required>
@@ -437,10 +443,15 @@ function addNewProductToDOM() {
                     <label for="category">Category: </label>
                     <input type="text" name="category" id="category" required>
                     
-                    <button class="button-submit" type="submit">Send</button>
-                    <button class="button-reset" type="reset">Cancel</button>
+                    <div  class="button-modal-form">  
+                        <button class="button-submit" type="submit">Send</button>
+                        <button class="button-reset" type="reset">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>`;
+
+        const formAdd  = document.querySelector("#modalBoxAdd form");
 
         formAdd.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -483,8 +494,6 @@ function addNewProductToDOM() {
         });
 
     })
-
-   //aquí quité el appenchild del formulario revisar mañana
     
 }
 

@@ -1,5 +1,17 @@
 @import "./reset.css";
 
+/*Algunos estilos más del body no contemplados en el reset*/
+/*Evita que aparezca la barra de scroll lateral en el body de mi página web*/
+
+body {
+    overflow: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
 /*Estilos para el header*/
 
 #header-shop{
@@ -83,7 +95,6 @@
 }
 
 
-
 /*Estilos para el main*/
 
 main{
@@ -97,16 +108,11 @@ main{
 
         h2{
             text-align: left;
-            margin-top: 60px;
-            margin-bottom: 40px;
-            padding-left: 15px;
             font-size: 1.8rem;
-            width: fit-content;
+            width: 100%;
             margin: 80px 60px 40px 60px;
-            padding: 0 35px;
-        }
-        h2:hover{
-            text-decoration: underline overline rgb(175, 144, 180);
+            padding: 0 40px;
+            cursor: default;
         }
 
         #products-container{
@@ -155,6 +161,7 @@ main{
                         cursor: pointer;
                         margin-bottom: 5px;
                     }
+
                     h3{
                         text-align: center;
                         display: -webkit-box;
@@ -163,8 +170,8 @@ main{
                         overflow: hidden;
                         text-overflow: ellipsis;
                         cursor: pointer;
-
                     }
+
                     .product-description{
                         text-align: justify;
                         display: -webkit-box;
@@ -173,8 +180,8 @@ main{
                         overflow: hidden;
                         text-overflow: ellipsis;
                         cursor: default;
-
                     }
+
                     .product-description::first-letter {
                         text-transform: uppercase;  /* Convierte la primera letra en mayúscula */
                     }
@@ -184,6 +191,7 @@ main{
                         font-weight: bolder;
                         cursor: default;
                     }
+
                     .product-category{
                         display: none;
                     }
@@ -203,6 +211,7 @@ main{
                         border: 1px solid rgb(145, 138, 138);
                         border-radius: 5px; 
                     }
+
                     button:hover{
                         border: 1px solid rgb(85, 68, 87);
                         background-color: rgb(123, 112, 124);
@@ -212,6 +221,7 @@ main{
                 }
                 
             }
+
             .product-card:hover{
                 transform: scale(1.02); /* Aumenta el tamaño en un 10% */
                 box-shadow: 0 3px 8px rgb(135, 108, 138); /* Agrega sombra para resaltar */
@@ -231,20 +241,20 @@ main{
                 border: 1px solid rgb(145, 138, 138);
                 border-radius: 5px; 
             }
+
             .addProduct:hover{
                 border: 1px solid rgb(85, 68, 87);
                 background-color: rgb(123, 112, 124);
                 color: white;
                 font-weight: bold;
             }
+
         }
-
-
 
     }
 }
 
-/* The Modal (background) */
+/* Estilos para la ventana modal y el formulario de su interior (main)*/
 .modal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -255,31 +265,90 @@ main{
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+
+    /* Modal Content/Box */
+    .modal-content {
+        box-sizing: border-box;
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 30%; /* Could be more or less, depending on screen size */
+        min-width: 300px;
+        height: 480px;
+        border: 2px solid rgb(106, 38, 112);
+        border-radius: 0.5em;
+        background-color: rgb(226, 226, 226);
+
+        form{
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            padding: 15px;
+
+             /* Estilos para la x que cierra el formulario*/
+            .close {
+                text-align: right;
+                color: #949699;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover, .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            h3{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                color:   rgb(106, 38, 112);
+                height: fit-content;
+                width: 100%;
+                
+                margin-bottom: 5px;
+            }
+
+            label{
+                color:  rgb(30, 9, 32);
+                font-size: 16px;
+                margin-bottom: 3px;
+            }
+
+            input{
+                padding-left: 10px;
+                color:  rgb(30, 9, 32);
+                margin-bottom: 2px;
+            }
+
+            .button-modal-form{
+                display: flex;
+                justify-content: space-evenly;
+                width: 100%;
+                margin-top: 20px;
+
+                .button-submit, .button-reset{
+                    border: 1px solid rgb(145, 138, 138);
+                    border-radius: 5px;
+                    width: 100px;
+                }
+        
+                .button-submit:hover, .button-reset:hover{
+                    border: 1px solid rgb(85, 68, 87);
+                    background-color: rgb(123, 112, 124);
+                    color: white;
+                }
+            }
+        }
+    }
   
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
   
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+}
   
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  
 
 
 /*Estilos para el footer*/
@@ -343,6 +412,7 @@ main{
             height: 18px;
             width: 18px; 
             fill: rgb(99, 94, 94);  
+            cursor: pointer;
         }
 
         .socialx:hover, .instagram:hover, .facebook:hover {

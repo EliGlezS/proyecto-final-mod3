@@ -1,5 +1,16 @@
 @import "./reset.css";
 
+
+/*Algunos estilos más del body no contemplados en el reset*/
+/*Evita que aparezca la barra de scroll lateral en el body de mi página web*/
+body {
+    overflow: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 /*Estilos para el header*/
 
 #header-login{
@@ -22,7 +33,7 @@
 /*Estilos para el main*/
 
 #main-login{
-    background-image: url(https://i.pinimg.com/736x/35/e8/69/35e86976c12b01a484b447bb0e324fb5.jpg);
+    background-image: url(https://i.pinimg.com/736x/32/d9/fb/32d9fb94bdc14272ed796c86f6957edd.jpg);
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-size: cover; /* Hace que la imagen cubra todo el contenedor */
     background-position: center; /* Centra la imagen dentro del contenedor */
@@ -39,6 +50,7 @@
         width: 300px;
         margin-bottom: 25px;
         color:  rgb(123, 112, 124);
+        cursor: default;
     }
 
     #loginForm{
@@ -148,7 +160,8 @@
         .socialx, .instagram, .facebook {
             height: 18px;
             width: 18px; 
-            fill: rgb(99, 94, 94);  
+            fill: rgb(99, 94, 94); 
+            cursor: pointer; 
         }
 
         .socialx:hover, .instagram:hover, .facebook:hover {

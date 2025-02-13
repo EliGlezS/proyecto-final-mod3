@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./public/logo_size_invert_size_mod.jpg" sizes="192x192" type="image/x-icon">
     <link rel="stylesheet" href="./src/styles/login.css">
-    <title>Document</title>
+    <title>PrimeZone LogIn</title>
 </head>
 <body>
     <header id="header-login">
@@ -14,14 +14,21 @@
 
     <main id="main-login">
         <h1>Login</h1>
-        <form id="loginForm">
-          <label for="userName">Username</label>
-          <input type="text" id="userName" name="username" placeholder="Username..." required>
-          </br>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" placeholder="Enter your password..." required>
-          </br>
+        <form id="loginForm" novalidate>
+          <div>
+            <label for="userName">Username</label>
+            <input class="input-alphanumeric" type="text" id="userName" name="username" placeholder="Username..." required>
+            <span></span>
+          </div>
+          
+          <div>
+            <label for="password">Password</label>
+            <input  class="input-alphanumericSimbols" type="password" name="password" id="password" placeholder="Enter your password..." required>
+            <span></span>
+          </div>
+
           <button type="submit">Login</button>
+
         </form>
     </main>
 

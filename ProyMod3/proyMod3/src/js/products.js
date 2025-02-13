@@ -23,9 +23,10 @@ const API_BASE_URL = "https://fakestoreapi.com";
     } catch (error) {
         console.error("Error fetching products", error);
     }
-}*/
+}
 
-/*getAllProducts()
+//Una vez la petición nos devuelva los productos llamamos con una promise a la función displayProducts() donde se le pasan esos resultados por parámetro
+getAllProducts()
     .then((resultado) => {
         displayProducts(resultado);
     })
@@ -33,6 +34,8 @@ const API_BASE_URL = "https://fakestoreapi.com";
         console.error("Error fetching products:", error);
 });*/
 
+/*Se declaró un array de objetos que contiene los productos resultado de la petición GET (alllProducts) 
+a la API, debido a problemas con la misma */
 const resultado = [
     {"id":1,"title":"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops","price":109.95,"description":"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday","category":"men's clothing","image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","rating":{"rate":3.9,"count":120}},
     {"id":2,"title":"Mens Casual Premium Slim Fit T-Shirts ","price":22.3,"description":"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.","category":"men's clothing","image":"https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg","rating":{"rate":4.1,"count":259}},
@@ -152,8 +155,8 @@ async function deleteProduct(id) { //borramos el producto de la id especificada
     } catch (error) {
         console.error("Error deleting product:", error);
     }
-}*/
-
+}
+*/
 
 //----------------------------------Funciones manejadoras------------------------------------------ 
 
@@ -262,12 +265,13 @@ function editAndShowForm(event){
 
     //const form = document.createElement("form");
 
-    getProduct(productId) //Tengo que añadir aquí un título que segun el botón que toque salga un título u otro
+    getProduct(productId) 
     .then((product) => {
         containerForm.innerHTML= `
         <div id="modalBoxEdit" class="modal">
             <div class="modal-content">
-                <form>
+                <form novalidate>
+                
                     <span class="close"> &times;</span>
                     <h3>Edit Product Form</h3>
 
@@ -277,15 +281,12 @@ function editAndShowForm(event){
                         <span></span>
                     </div>
 
-                    
-                    
                     <div>
                         <label for="price">Price:</label>
                         <input class="input-numeric" type="text" name="price" id="price" value="${product.price}" required>
                         <span></span>
                     </div>
 
-                    
                     <div>
                         <label for="description">Description: </label>
                         <input class="input-alphanumeric" type="text" name="description" id="description" value="${product.description}" required>
@@ -297,17 +298,17 @@ function editAndShowForm(event){
                         <input type="text" name="image" id="image" value="${product.image}" required>
                     </div>
                     
-                    
                     <div>
                         <label for="category">Category: </label>
                         <input class="input-alpha" type="text" name="category" id="category" value="${product.category}" required>
                         <span></span>
                     </div>
 
-                    <div>
+                    <div class="button-modal-form">
                         <button class="button-submit" type="submit">Send</button>
                         <button class="button-reset" type="reset">Cancel</button>
                     </div>
+
                 </form>
             </div>
         </div>`;
@@ -322,8 +323,8 @@ function editAndShowForm(event){
             forceValidation();
 
 
-            //Si hay un error en el formulario no envio nada y salgo submit
-            if (formAdd.querySelectorAll(".error").length > 0) {
+            //Si hay un error en el formulario no envio nada y salgo submit (antes en vez de form ponia formAdd)
+            if (form.querySelectorAll(".error").length > 0) {
                 return;
             }
             
@@ -464,7 +465,7 @@ function addNewProductToDOM() {
 
         <div id="modalBoxAdd" class="modal">
             <div class="modal-content">
-                <form novalidate>
+                <form novalidate> 
                     <span class="close"> &times;</span>
                     <h3>Add New Product Form</h3>
 
@@ -501,6 +502,7 @@ function addNewProductToDOM() {
                         <button class="button-submit" type="submit">Send</button>
                         <button class="button-reset" type="reset">Cancel</button>
                     </div>
+
                 </form>
             </div>
         </div>`;
@@ -520,7 +522,6 @@ function addNewProductToDOM() {
                 return;
             }
             
-
             const addProduct = {
                 title: event.target.title.value,
                 price: event.target.price.value,

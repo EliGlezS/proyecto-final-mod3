@@ -345,6 +345,7 @@ main{
                     font-size: 12px;
                 }
             }
+            
             .button-modal-form{
                 display: flex;
                 flex-direction: row;
@@ -353,6 +354,7 @@ main{
                 margin-top: 20px;
 
                 .button-submit, .button-reset{
+                   
                     border: 1px solid rgb(145, 138, 138);
                     border-radius: 5px;
                     width: 100px;
@@ -363,10 +365,9 @@ main{
                     background-color: rgb(123, 112, 124);
                     color: white;
                 }
-            }
+            } 
         }
     }
-  
   
 }
   

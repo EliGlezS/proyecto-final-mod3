@@ -270,16 +270,40 @@ function editAndShowForm(event){
                 <form>
                     <span class="close"> &times;</span>
                     <h3>Edit Product Form</h3>
-                    <label for="title">Title Product: </label>
-                    <input type="text" name="title" id="title" value="${product.title}" required>
-                    <label for="price">Price:</label>
-                    <input type="text" name="price" id="price" value="${product.price}" required>
-                    <label for="description">Description: </label>
-                    <input type="text" name="description" id="description" value="${product.description}" required>
-                    <label for="image">Image url: </label>
-                    <input type="text" name="image" id="image" value="${product.image}" required>
-                    <label for="category">Category: </label>
-                    <input type="text" name="category" id="category" value="${product.category}" required>
+
+                    <div>
+                        <label for="title">Title Product: </label>
+                        <input class="input-alphanumeric" type="text" name="title" id="title" value="${product.title}" required>
+                        <span></span>
+                    </div>
+
+                    
+                    
+                    <div>
+                        <label for="price">Price:</label>
+                        <input class="input-numeric" type="text" name="price" id="price" value="${product.price}" required>
+                        <span></span>
+                    </div>
+
+                    
+                    <div>
+                        <label for="description">Description: </label>
+                        <input class="input-alphanumeric" type="text" name="description" id="description" value="${product.description}" required>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <label for="image">Image url: </label>
+                        <input type="text" name="image" id="image" value="${product.image}" required>
+                    </div>
+                    
+                    
+                    <div>
+                        <label for="category">Category: </label>
+                        <input class="input-alpha" type="text" name="category" id="category" value="${product.category}" required>
+                        <span></span>
+                    </div>
+
                     <div>
                         <button class="button-submit" type="submit">Send</button>
                         <button class="button-reset" type="reset">Cancel</button>
@@ -288,10 +312,21 @@ function editAndShowForm(event){
             </div>
         </div>`;
 
+        loadValidation();
+
         const form = document.querySelector("#modalBoxEdit form");
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
+
+            forceValidation();
+
+
+            //Si hay un error en el formulario no envio nada y salgo submit
+            if (formAdd.querySelectorAll(".error").length > 0) {
+                return;
+            }
+            
             const updatedProduct = {
                 title: event.target.title.value,
                 price: event.target.price.value,
@@ -429,19 +464,38 @@ function addNewProductToDOM() {
 
         <div id="modalBoxAdd" class="modal">
             <div class="modal-content">
-                <form>
+                <form novalidate>
                     <span class="close"> &times;</span>
                     <h3>Add New Product Form</h3>
-                    <label for="title">Title Product: </label>
-                    <input type="text" name="title" id="title" required>
-                    <label for="price">Price:</label>
-                    <input type="text" name="price" id="price" required>
-                    <label for="description">Description: </label>
-                    <input type="text" name="description" id="description" required>
-                    <label for="image">Image url: </label>
-                    <input type="text" name="image" id="image" required>
-                    <label for="category">Category: </label>
-                    <input type="text" name="category" id="category" required>
+
+                    <div>
+                        <label for="title">Title Product: </label>
+                        <input class="input-alphanumeric" type="text" name="title" id="title" placeholder="Enter a title product..." required>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <label for="price">Price:</label>
+                        <input class="input-numeric" type="text" name="price" id="price" placeholder="Price..." required>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <label for="description">Description: </label>
+                        <input class="input-alphanumeric" type="text" name="description" id="description" placeholder="Description..." required>
+                        <span></span>
+                    </div>
+
+                    <div>
+                        <label for="image">Image url: </label>
+                        <input type="text" name="image" id="image" placeholder="Url..." required>
+                    </div>
+                  
+                    <div>
+                        <label for="category">Category: </label>
+                        <input class="input-alpha" type="text" name="category" id="category" placeholder="Category..." required>
+                        <span></span>
+                    </div>
                     
                     <div  class="button-modal-form">  
                         <button class="button-submit" type="submit">Send</button>
@@ -451,10 +505,22 @@ function addNewProductToDOM() {
             </div>
         </div>`;
 
+        loadValidation();
+
         const formAdd  = document.querySelector("#modalBoxAdd form");
 
         formAdd.addEventListener("submit", async (event) => {
             event.preventDefault();
+
+            forceValidation();
+
+
+            //Si hay un error en el formulario no envio nada y salgo submit
+            if (formAdd.querySelectorAll(".error").length > 0) {
+                return;
+            }
+            
+
             const addProduct = {
                 title: event.target.title.value,
                 price: event.target.price.value,
@@ -521,9 +587,128 @@ function toggleContainerForm(event) {
 }
 
 
+//------------------------Verificaciones de formulario-----------------------------------
 
 
+function loadValidation (){
+    
+    //Inputs alfanúmericos
+    const inputsAlphanumeric = document.querySelectorAll(".input-alphanumeric");
 
+    inputsAlphanumeric.forEach((input) =>{
+        input.addEventListener("input" , (event) => {
+
+            const regex = /^[A-Z][a-zA-Z0-9.-]*$/;
+            const verificationInputAlpNum = regex.test(event.target.value); 
+            const span = event.target.closest("div").querySelector("span");
+
+            if(!verificationInputAlpNum){
+                input.classList.add("error");
+                span.style.display = 'block';
+                span.textContent = "Insert an alphanumeric. Text must be start with upper case."
+                console.log("Error detectado");
+            }else{
+                input.classList.remove("error");
+                span.style.display = 'none';
+                span.textContent = "";
+                console.log("Todo ok");
+            }
+
+        });
+    });
+    
+    
+    //Inputs númericos
+
+    const inputsNumeric = document.querySelectorAll(".input-numeric");
+
+    inputsNumeric.forEach((input) =>{
+        input.addEventListener("input" , (event) => {
+
+            const regex = /^(?!0(\.0+)?$)(?!\-)(\d+(\.\d+)?|\.\d+)$/;
+            const verificationInputNum = regex.test(event.target.value); 
+            const span = event.target.closest("div").querySelector("span");
+
+            if(!verificationInputNum){
+                input.classList.add("error");
+                span.style.display = 'block';
+                span.textContent = "Insert a number. Price must be greater than 0."
+                console.log("Error detectado");
+            }else{
+                input.classList.remove("error");
+                span.style.display = 'none';
+                span.textContent = "";
+                console.log("Todo ok");
+            }
+
+        });
+    });
+
+    //Inputs alfabéticos
+
+    const inputsAlpha = document.querySelectorAll(".input-alpha");
+
+    inputsAlpha.forEach((input) =>{
+        input.addEventListener("input" , (event) => {
+
+            const regex = /^[a-z']+$/;
+            const verificationInputAlpha = regex.test(event.target.value); 
+            const span = event.target.closest("div").querySelector("span");
+
+            if(!verificationInputAlpha){
+                input.classList.add("error");
+                span.style.display = 'block';
+                span.textContent = "Insert letters. Only in lower case."
+                console.log("Error detectado");
+            }else{
+                input.classList.remove("error");
+                span.style.display = 'none';
+                span.textContent = "";
+                console.log("Todo ok");
+            }
+
+        });
+    });
+}
+
+function forceValidation() {
+    
+    const inputsAlphanumeric = document.querySelectorAll(".input-alphanumeric"); 
+    inputsAlphanumeric.forEach(input => {
+        // Crear el evento 'input'
+        const event = new Event('input', {
+          'bubbles': true,
+          'cancelable': true
+        });
+      
+        // Disparar el evento 'input' en cada elemento
+        input.dispatchEvent(event);
+    });
+
+    const inputsNumeric = document.querySelectorAll(".input-numeric");
+    inputsNumeric.forEach(input => {
+        // Crear el evento 'input'
+        const event = new Event('input', {
+          'bubbles': true,
+          'cancelable': true
+        });
+      
+        // Disparar el evento 'input' en cada elemento
+        input.dispatchEvent(event);
+    });
+
+    const inputsAlpha = document.querySelectorAll(".input-alpha");
+    inputsAlpha.forEach(input => {
+        // Crear el evento 'input'
+        const event = new Event('input', {
+          'bubbles': true,
+          'cancelable': true
+        });
+      
+        // Disparar el evento 'input' en cada elemento
+        input.dispatchEvent(event);
+    });
+}
 
 
 

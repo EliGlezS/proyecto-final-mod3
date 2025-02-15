@@ -1,7 +1,7 @@
 //13 - Crear un algoritmo que sume todos los números de un array
 
-
-let arrayNumber = [3, 5, 50, 20, 2];
+//Se crearon dos funciones una para comprobar el array de números y otra para realizar la suma de esos valores.
+let arrayNumber = [3, 5, 50, 10, 2];
 
 
 function checkOnlyNumber(arr) {

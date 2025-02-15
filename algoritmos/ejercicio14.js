@@ -1,11 +1,17 @@
 //14 - Escribir un programa que verifique si dos strings son anagramas.
 
-let word1= "Lácteo";
+let word1= "lácteo";
 let word2="Coleta";
 
 //Función paso a paso 
 
 function checkAnagrams(string1, string2) {
+
+    //Verificamos si los datos son string 
+    if (typeof word1 !== "string" || typeof word2 !== "string") {
+        console.log("Introduce valores válidos (palabras).");
+        return;
+    }
 
     //cambiamos los string que entran a minúscula y sin acentos
     let word1MinusNorm = string1.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -51,9 +57,15 @@ function checkAnagrams(string1, string2) {
 
 //checkAnagrams(word1, word2);
 
-//Funcion más resumida
+//Misma funcion más resumida
 
 function checkAnagrams1(string1, string2) {
+
+    //Verificamos si los datos son string 
+    if (typeof word1 !== "string" || typeof word2 !== "string") {
+        console.log("Introduce valores válidos (palabras).");
+        return;
+    }
 
     //cambiamos los string que entran a minúscula y sin acentos
     let word1MinusNorm = string1.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");

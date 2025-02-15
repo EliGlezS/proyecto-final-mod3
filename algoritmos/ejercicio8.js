@@ -1,7 +1,8 @@
 // 8 -- Crear una función que cuente cuántas veces aparece un carácter en un string.
 
-/*Primero tenemos que crear una funcion que al introducirle una palabra, los caracteres de esa palabra
-queden guardados como elementos de un array e ir buscando el caracter  */
+/*(Interpretación) La función hace distinción entre caracteres con tildes por lo que á y a no serán iguales, en cambio
+A no se diferencia de a ya que se pasa todo a lowerCase() por lo que se cuentan como iguales.*/
+
 
 function characterCounter(str, charact) {
 
@@ -23,34 +24,24 @@ function characterCounter(str, charact) {
     let charactLower = charact.toLowerCase();
     console.log(charactLower);
 
-    /*Usamos un reduces para que recorra el array, para reducir los valores, este tendrá un acc (acumulador y 
+    /*Se usa el método reduce para que recorra el array y reducir los valores, este tendrá un acc (acumulador y 
     un charArr que es el valor actual de esa iteración, por eso se usa un if con la condicion que si el valor
-    actual es estrictamente igual al charact que pasamos por parametro el contador suma y asigna 1, pasando de 0 a 1 
+    actual es estrictamente igual al charactLower que pasamos por parámetro el contador suma y asigna 1, pasando de 0 a 1 
     en la primera iteración y así comprobando si hay coincidencia entre los elementos del array y el caracter que
     se pasa en la función*/
     let count = arr.reduce((acc, charArr) => {
 
-        if(charArr === charact){
+        if(charArr === charactLower){
             acc += 1; 
         } 
 
        return acc;
 
     }, 0); 
-
-    //Con find:
-    
-    /*let count =0;
-
-    arr.find((element) => {
-        if (element === charactLower) {
-            count ++;
-        }
-    });*/
     
     console.log(`El caracter '${charactLower}' aparece ${count} veces.`);
 
 }
 
 
-//characterCounter("a lo Haa", "a");
+//characterCounter("Hola como estás?", "o");

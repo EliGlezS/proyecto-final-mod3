@@ -1,11 +1,12 @@
 //1 - Escribir una función que determine si un número es par o impar. 
 
-/*creamos una función que verifique el número que introduzcamos (podmeos pedir que el 
-usuario lo introduzca por consola)*/
+/*Se crea una función que verifique el número que se introduce*/
 
-//Creamos una variable que guarde el valor del numero que introduzca el usuario, se pedirá que sea un número entero.
+//Se crea una variable que guarde el valor del número que introduzca el usuario, se pedirá que sea un número entero.
 
-//let numberCheck = parseInt(prompt("Introduce un número para saber si es par o impar :"));
+//Después de probar con el prompt vuelve a comentarlo para que puedas seguir probando los demás algoritmos sin que se muestre.
+
+//let numberCheck = parseInt(prompt("Introduce un número entero para saber si es par o impar (Si introduces un número décimal se cogerá la parte entera):"));
 
 function VerifyNumber (number){
     
@@ -22,3 +23,4 @@ function VerifyNumber (number){
 }
 
 //VerifyNumber(numberCheck);
+

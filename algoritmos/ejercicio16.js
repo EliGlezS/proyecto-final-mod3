@@ -25,9 +25,11 @@ function romanToInt(roman) {
         return;
     }
 
+    //Se convierte al string en array con el método split().
     let romanArr = roman.split("");
     console.log(romanArr);
 
+    //Se inicializa la variable result para acumular el valor del número arábigo.
     let result = 0;
 
     // Recorrer la cadena del número romano de izquierda a derecha

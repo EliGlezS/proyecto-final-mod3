@@ -2,11 +2,11 @@
 
 function parenthesesBalance(str) {
 
-    //pasamos a array el string introducido como argumento
+    //Se pasa a array el string introducido como argumento
     let strToArr = str.split("");
     console.log(strToArr);
 
-    /*Usamos un filter para los paréntesis de apertura y otro filter para los parentesis de cierre
+    /*Se usa un filter para los paréntesis de apertura y otro filter para los parentesis de cierre
     por cada elemento se filtran aquellos que tengan una coincidencia con la expresión regular, creando el filter
     un array nuevo con esos elementos*/
     let parenthesesOpen = strToArr.filter((element) => element.match(/[\(\{\[]/g));

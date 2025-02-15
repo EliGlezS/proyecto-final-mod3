@@ -1,7 +1,7 @@
 //18 - Crear un programa que transforme una frase en "notación hacker" (leet speak).
 
 function leetSpeak(string){
-    //Verificamos que lo que entre sea un string
+    //Se verifica que lo que se introduce sea un string
     if (typeof string !== "string") {
         console.log("Introduce una palabra o frase válida.");
         return;
@@ -22,13 +22,13 @@ function leetSpeak(string){
         'x': '%'
     };
     
-    /*Pasamos el string a minusculas ya que en el objeto solo se tuvo en cuenta los valores para las claves en minúscula
-    , una vez realizado el cambio se pasa a array, para usar map (es decir crea un nuevo array
-    transformando los elementos según la condición dada) por tanto dentro buscamos el valor si lo hay en el objeto creado
+    /*Se transforma el string a minúsculas, ya que en el objeto solo se tuvo en cuenta los valores para las claves en minúscula
+    , una vez realizado el cambio se pasa a array, para usar map (es decir se crea un nuevo array
+    transformando los elementos según la condición dada). A continuación se busca el valor en el objeto creado
     y si existe valor asociado a ese elemento lo reemplaza o bien si no hay coincidencia mantiene el elemento original. */
     let changeArr = string.toLowerCase().split('').map((element) => changesLeetSpeak[element] || element);
 
-    //Pasamos a string 
+    //Se pasa nuevamente a string y se muestra por consola
     let newStrinLeetSpeak= changeArr.join('');  
     console.log(newStrinLeetSpeak); 
 }

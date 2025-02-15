@@ -8,13 +8,17 @@
     <title>PrimeZone LogIn</title>
 </head>
 <body>
+  <!--Header Login-->
     <header id="header-login">
         <img src="./public/logo_size_invert_size_mod.jpg" alt="Logo de PrimeZone">
     </header>
 
+    <!--Main Login-->
     <main id="main-login">
         <h1>Login</h1>
-        <form id="loginForm" novalidate>
+        
+        <!--Formulario para Login-->
+        <form id="loginForm" novalidate><!--novalidate: Desactiva la validación de formularios por defecto del navegador-->
           <div>
             <label for="userName">Username</label>
             <input class="input-alphanumeric" type="text" id="userName" name="username" placeholder="Username..." required>
@@ -32,11 +36,13 @@
         </form>
     </main>
 
+    <!--Footer Login-->
     <footer id="footer-login">
         <!--Logo de la marca-->
         <div class="footer-logo">
           <img src="./public/logo_size_invert_primezone.jpg" alt="">
         </div>
+
         <!--Division en el footer para contacto-->
         <div class="footer-information">
           <a  href="#" class="contact">Contact</a>
@@ -51,8 +57,8 @@
           <svg class="socialx" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
             <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
           </svg>
-          <!--svg de Instagram-->
 
+          <!--svg de Instagram-->
           <svg class="instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
             <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 
             0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 
@@ -71,7 +77,6 @@
         </div>
       </footer>
     
-
     <script src="./src/js/login.js"></script>
 </body>
 </html>

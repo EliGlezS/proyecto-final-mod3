@@ -135,7 +135,7 @@ function loadValidation (){
 
 function forceValidation() {
     
-    //Selección del input 
+    //Selección de los input 
     const inputsAlphanumeric = document.querySelectorAll(".input-alphanumeric"); 
     inputsAlphanumeric.forEach(input => {
         // Crear el evento 'input'. Simula la acción de escribir o modificar el contenido de un campo de texto.

@@ -453,34 +453,27 @@ async function deleteProductToDOM(event) {
 }
 
 
-
-//Función para agregar un producto nuevo 
-
+//Función para agregar un producto nuevo al DOM (y a la base de datos de manera falsa).
 function addNewProductToDOM() {
 
-    //Localizamos en js el contenedor donde irá la carta del nuevo producto
+    //Se localiza el contenedor donde se mostrarán los productos.
     const productsContainer = document.getElementById("products-container");
 
-    //Localizamos en mi html desde js el contenedor (div) para el botón add
+    //También se localiza el contenedor (div) para el botón añadir
 
     const buttonAddContainer = document.getElementById("container-addButton");
 
-    //Localizamos el botón del html
+    //Se localiza el propio botón de agregar
     const addNewProductButton = document.querySelector("#container-addButton .addProduct");
     
-    //El botón tiene un evento
-
+    //El botón tiene un evento, al hacer click en el se muestra el formulario para agregar un nuevo producto.
     addNewProductButton.addEventListener("click", () => {
 
         const containerForm = document.getElementById("products-form");
-        containerForm.style.display = 'block'; // Nos aseguramos que el contenedor sea visible
-        containerForm.innerHTML="";
+        containerForm.style.display = 'block'; //Asegurarse que el contenedor sea visible
+        containerForm.innerHTML=""; //Se limpia el contenido anterior del formulario
 
-        //Creamos un formulario para añadir los datos del producto nuevo
-        //const formAdd = document.createElement("form");
-
-        //containerForm.appendChild(formAdd);
-
+        //Se crea dinámicamente el formulario con los campos que se deben introducir del producto
         containerForm.innerHTML= `
 
         <div id="modalBoxAdd" class="modal">
@@ -527,21 +520,27 @@ function addNewProductToDOM() {
             </div>
         </div>`;
 
+        //Se llama a la función para validar el formulario
         loadValidation();
 
+        //Se selecciona el formulario que se encuentra dentro del contenedor con Id modalBoxAdd
         const formAdd  = document.querySelector("#modalBoxAdd form");
 
+        //Se agrega un evento de tipo submit al formulario anteriormente localizado.
         formAdd.addEventListener("submit", async (event) => {
-            event.preventDefault();
+            event.preventDefault();//Se evita la recarga predeterminada de la página cuando se envía un formulario
 
+            //Se llama a la función forceValidation para forzar la validación del formulario de manera manual
             forceValidation();
 
 
-            //Si hay un error en el formulario no envio nada y salgo submit
+            /*Se revisa si hay elementos con clase error en el formulario, permitiendo verificar si alguna validación ha fallado,
+            si es así se detiene el envío del formulario y no se crea el producto*/
             if (formAdd.querySelectorAll(".error").length > 0) {
                 return;
             }
             
+            //Se construye un objeto con los valores de los campos del formulario, conteniendo este objeto los datos que serán enviados para crear el nuevo producto
             const addProduct = {
                 title: event.target.title.value,
                 price: event.target.price.value,
@@ -551,13 +550,14 @@ function addNewProductToDOM() {
             }
             console.log(addProduct);
 
+            //Se espera a que se complete la llamada asíncrona que envía los datos al servidor para crear el nuevo producto (fake)
             await createNewProduct(addProduct);
 
-            //Llamamos a la función
+            //Se llama a la función createProduct para agregar el producto al DOM
 
             createProduct(addProduct, productsContainer);
 
-            //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+            //Se llama a la función toggleDisplay para ocultar el contenedor del formulario una vez el producto haya sido agregado.
             toggleDisplay(containerForm);
             
 
@@ -565,16 +565,18 @@ function addNewProductToDOM() {
 
         //BOTÓN CANCEL DEL FORMULARIO
 
-        //Creo la funcionalidad del botón cancel del formulario editar
+        //Se localiza el botón cancelar del formulario de añadir un producto nuevo
         const buttonCancel = document.querySelector(".button-reset");
         console.log(buttonCancel);
+        //El botón escucha un evento click que llama a la función toggleContainerForm
         buttonCancel.addEventListener("click", (event) =>{
-           toggleContainerForm(event);
+           toggleContainerForm(event); //oculta el formulario
         });
 
         //SPAN PARA CERRAR EL FORMULARIO 
-
+        //Se localiza o selecciona el icono de cierre x dentro del contenedor del formulario (modalBoxAdd)
         const spanForm = document.querySelector("#modalBoxAdd .close");
+        //el span del formulario escucha un evento click que llama a la función toggleContainerForm para cerrar el formulario (cuando se hace click en la x).
         spanForm.addEventListener("click", (event) =>{
             toggleContainerForm(event);
     

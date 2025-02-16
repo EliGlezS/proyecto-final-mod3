@@ -85,7 +85,7 @@ async function getProduct(id) {
 
 
 //Petición POST (crear un nuevo producto)
-async function createNewProduct(obj) { //obj pendiente de cambio
+async function createNewProduct(obj) { 
     const url = `${API_BASE_URL}/products`;
 
     try {
@@ -130,8 +130,7 @@ async function editProduct(obj, id) {//Se pasan los datos a cambiar y el id para
         const result = await response.json();
         console.log(result);
 
-        //Aquí también puedo poner la lógica para repintar el producto (en ambos caso aquí o abajo me puedo crear una función)
-        //repaint(obj, id);
+        //Se puede llamar a la función repaint en esta línea de código pero se evita para no mezclar funcionalidades en la petición
 
     } catch (error) {
         console.error("Error editing product:", error);
@@ -162,8 +161,7 @@ async function deleteProduct(id) { //borramos el producto de la id especificada
 
 //----------------------------------Funciones manejadoras------------------------------------------ 
 
-//Función para mostrar todos los productos en la interfaz de usuario (estos productos vienen de la petición).
-
+//Función para mostrar todos los productos en la web (estos productos vienen de la petición).
 function displayProducts(products) {//recibe por parámetro un array de objetos con el resultado de la petición GET de todos los productos.
 
     console.log(products);
@@ -184,11 +182,7 @@ function displayProducts(products) {//recibe por parámetro un array de objetos 
 
 }
 
-//displayProducts(resultado); //QUITAR LUEGO JUNTO CON EL OBJETO CREADO
-
-
 //Función para crear un contenedor HTML de un producto y añadirlo dinámicamente al DOM.
-
 function createProduct(product, productsContainer) {
     console.log(product);//Comprobación para saber si los datos llegan bien.
 
@@ -250,7 +244,6 @@ function createProduct(product, productsContainer) {
 /*Función para editar un producto, el objetivo de la función es mostrar un formulario para editar los datos de un producto,
 al darle click al botón de editar, con la posbilidad de enviar los datos después de modificarlos y que estos se muestren 
 al usuario a través del DOM*/
-
 function editAndShowForm(event){
 
     //Se obtiene el Id del botón al hacer click sobre el.
@@ -268,8 +261,6 @@ function editAndShowForm(event){
     containerForm.style.display = 'block'; // Nos aseguramos que el contenedor sea visible
 
     containerForm.innerHTML="";//Se limpia el contenido del formulario.
-
-    //const form = document.createElement("form");
 
     //Se llama a getProduct para obtener los detalles del producto usando su Id
     getProduct(productId) 
@@ -314,7 +305,7 @@ function editAndShowForm(event){
 
                     <div class="button-modal-form">
                         <button class="button-submit" type="submit">Send</button>
-                        <button class="button-reset" type="reset">Cancel</button>
+                        <button class="button-reset" type="button">Cancel</button>
                     </div>
 
                 </form>
@@ -366,7 +357,7 @@ function editAndShowForm(event){
         //BOTÓN CANCEL DEL FORMULARIO
 
         //Se crea la funcionalidad del botón cancel del formulario editar
-        //Selección del botón con la clase button-reset dentro del formulario dentro de modalBoxEdit
+        //Selección del botón con la clase button-reset dentro del formulario que esta contenido en el modalBoxEdit
         const buttonCancel = document.querySelector(`#modalBoxEdit .button-reset`);
         console.log(buttonCancel);
 
@@ -459,10 +450,6 @@ function addNewProductToDOM() {
     //Se localiza el contenedor donde se mostrarán los productos.
     const productsContainer = document.getElementById("products-container");
 
-    //También se localiza el contenedor (div) para el botón añadir
-
-    const buttonAddContainer = document.getElementById("container-addButton");
-
     //Se localiza el propio botón de agregar
     const addNewProductButton = document.querySelector("#container-addButton .addProduct");
     
@@ -513,7 +500,7 @@ function addNewProductToDOM() {
                     
                     <div  class="button-modal-form">  
                         <button class="button-submit" type="submit">Send</button>
-                        <button class="button-reset" type="reset">Cancel</button>
+                        <button class="button-reset" type="button">Cancel</button>
                     </div>
 
                 </form>
@@ -721,7 +708,7 @@ function forceValidation() {
         });
       
         /* A continuación se llama input.dispatchEvent(event); esta función es útil cuando se necesita manejar un evento, 
-        como si el usuario hubiera interactuado con el campo, sin que realmente lo haga*/
+        como si el usuario hubiera interactuado con el campo, sin que realmente lo haga (forzar el evento input de manera artificial)*/
         input.dispatchEvent(event);
     });
 

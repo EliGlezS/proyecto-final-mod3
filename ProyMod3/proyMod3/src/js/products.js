@@ -534,8 +534,8 @@ function addNewProductToDOM() {
                 description: event.target.description.value,
                 image: event.target.image.value,
                 category: event.target.category.value,
+                id: generarNumeroAleatorio() //Generar un número aleatorio 
             }
-            console.log(addProduct);
 
             //Se espera a que se complete la llamada asíncrona que envía los datos al servidor para crear el nuevo producto (fake)
             await createNewProduct(addProduct);
@@ -597,6 +597,13 @@ function toggleContainerForm(event) {
     toggleDisplay(containerFormAdd);
 }
 
+//Función para generar un número aleatorio entre 32 y 9998
+function generarNumeroAleatorio() {
+    const min = 32; 
+    const max = 9998; 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 
 //------------------------Verificaciones de formulario-----------------------------------
 
@@ -612,7 +619,7 @@ function loadValidation (){
         input.addEventListener("input" , (event) => {
             //Se usa una expresión regular para validar el valor introducido a través del input 
             //Regex asegura que el texto empiece con mayúsculas, puede contener mayúsculas y minúsculas, números, puntos y guiones.
-            const regex = /^[A-Z][a-zA-Z0-9.-]*$/;
+            const regex = /^[A-Z][a-zA-Z0-9.,'% -]+$/;
             const verificationInputAlpNum = regex.test(event.target.value); 
             //Se localiza al span
             const span = event.target.closest("div").querySelector("span");
@@ -624,12 +631,10 @@ function loadValidation (){
                 input.classList.add("error");
                 span.style.display = 'block';
                 span.textContent = "Insert an alphanumeric. Text must be start with upper case."
-                console.log("Error detectado");
             }else{
                 input.classList.remove("error");
                 span.style.display = 'none';
                 span.textContent = "";
-                console.log("Todo ok");
             }
 
         });
@@ -652,12 +657,10 @@ function loadValidation (){
                 input.classList.add("error");
                 span.style.display = 'block';
                 span.textContent = "Insert a number. Price must be greater than 0."
-                console.log("Error detectado");
             }else{
                 input.classList.remove("error");
                 span.style.display = 'none';
                 span.textContent = "";
-                console.log("Todo ok");
             }
 
         });
@@ -672,7 +675,7 @@ function loadValidation (){
         input.addEventListener("input" , (event) => {
 
             //Esta expresión valida letras en minúscula y apóstrofos.
-            const regex = /^[a-z']+$/;
+            const regex = /^[a-z',. -]+$/;
             const verificationInputAlpha = regex.test(event.target.value); 
             const span = event.target.closest("div").querySelector("span");
 
@@ -680,12 +683,10 @@ function loadValidation (){
                 input.classList.add("error");
                 span.style.display = 'block';
                 span.textContent = "Insert letters. Only in lower case."
-                console.log("Error detectado");
             }else{
                 input.classList.remove("error");
                 span.style.display = 'none';
                 span.textContent = "";
-                console.log("Todo ok");
             }
 
         });

@@ -88,12 +88,10 @@ function loadValidation (){
                 input.classList.add("error");
                 span.style.display = 'block';
                 span.textContent = "Insert an alphanumeric. Text must be start with letter in lower case, and contain _"
-                console.log("Error detectado");
             }else{//Si es válido se elimina la clase error, se oculta el span y indica que está todo ok.
                 input.classList.remove("error");
                 span.style.display = 'none';
                 span.textContent = "";
-                console.log("ok");
             }
 
         });
@@ -118,12 +116,10 @@ function loadValidation (){
                 input.classList.add("error");
                 span.style.display = 'block';
                 span.textContent = "Password must be more than 5 characters."
-                console.log("Error detectado");
             }else{
                 input.classList.remove("error");
                 span.style.display = 'none';
                 span.textContent = "";
-                console.log("Todo ok");
             }
 
         });

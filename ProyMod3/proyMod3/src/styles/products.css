@@ -1,7 +1,7 @@
 @import "./reset.css";
 
 /*Algunos estilos más del body no contemplados en el reset*/
-/*Evita que aparezca la barra de scroll lateral en el body de mi página web*/
+/*Evita que aparezca la barra de scroll lateral en el body de la página web*/
 
 body {
     overflow: scroll;
@@ -25,12 +25,14 @@ body::-webkit-scrollbar {
     height: 100px;
     padding: 0 20px;
 
+    /*Estilos para el logo*/
     .logo-shop{
         width: 100px;
         min-width: 100px;
         height: 95px;
     }
 
+    /*Estilos para el input de buscar productos y el svg de la lupa*/
     .search-product{
        
         box-sizing: border-box;
@@ -63,6 +65,8 @@ body::-webkit-scrollbar {
         }
         
     }
+
+    /*Estilos para el contenedor del icono de login*/
     .icon-identify{
         box-sizing: border-box;
         display: flex;
@@ -91,7 +95,6 @@ body::-webkit-scrollbar {
             }
         }
     }
-
 }
 
 
@@ -101,6 +104,8 @@ main{
     width: 100%;
     height: auto;
 
+    /*Estilos para la sección de las cards de los productos, estilos de las cards (información y botones dentro de ellas),
+    estilos para el contenedor del botón de añadir*/
     #section-card{
         width: 100%;
         height: auto;
@@ -254,7 +259,7 @@ main{
     }
 }
 
-/* Estilos para la ventana modal y el formulario de su interior (main)*/
+/* Estilos para la ventana modal y el formulario de su interior (localizado en el main)*/
 .modal {
     position: fixed; 
     z-index: 1; /* Se superpone delante de la pantalla */
@@ -265,7 +270,7 @@ main{
     overflow: hidden; /*Previene que el contenido del elemento se desplace o se muestre fuera de sus límites*/
     background-color: rgba(0,0,0,0.4); 
 
-    /* Modal Content/Box */
+    /* Estilos para el Modal Content/Box */
     .modal-content {
         box-sizing: border-box;
         background-color: #fefefe;
@@ -279,6 +284,7 @@ main{
         border-radius: 0.5em;
         background-color: rgb(226, 226, 226);
 
+        /*Estilos para el formulario*/
         form{
             box-sizing: border-box;
             display: flex;
@@ -286,7 +292,7 @@ main{
             height: auto;
             padding: 15px;
 
-             /* Estilos para la x que cierra el formulario*/
+            /* Estilos para la x que cierra el formulario*/
             .close {
                 text-align: right;
                 color: #949699;
@@ -310,6 +316,7 @@ main{
                 margin-bottom: 5px;
             }
 
+            /*Estilos para los input, los inputs con la clase error y los span, que se mostrará en caso de error*/
             div{
                
                 box-sizing: border-box;
@@ -338,7 +345,7 @@ main{
                 }
 
                 span{
-                    display: none;
+                    display: none; /*Al inicio no se muestra*/
                     margin-top: 2px;
                     margin-bottom: 8px;
                     color: red;
@@ -346,6 +353,7 @@ main{
                 }
             }
             
+            /*Estilos los botones del formulario*/
             .button-modal-form{
                 display: flex;
                 flex-direction: row;
@@ -368,11 +376,8 @@ main{
             } 
         }
     }
-  
 }
   
-  
-
 
 /*Estilos para el footer*/
 
@@ -389,6 +394,7 @@ main{
     margin-top: 30px;
     gap: 5px;
 
+    /*Estilos para el logo de la empresa*/
     .footer-logo{
         display: flex;
         justify-content: center;
@@ -403,6 +409,7 @@ main{
         }
     }
 
+    /*Estilos para la información de la empresa*/
     .footer-information{
         box-sizing: border-box;
         display: flex;
@@ -421,6 +428,7 @@ main{
         }
     }
 
+    /*Estilos para los iconos de las redes sociales*/
     .icons-social-media{
         box-sizing: border-box;
         display: flex;
@@ -429,7 +437,6 @@ main{
         flex-direction: row;
         width: 200px;
         gap: 20px;
-        
         
         .socialx, .instagram, .facebook {
             height: 18px;
@@ -441,7 +448,5 @@ main{
         .socialx:hover, .instagram:hover, .facebook:hover {
             fill:rgba(255, 255, 255, 0.658);  
         }
-
     }
-
 }

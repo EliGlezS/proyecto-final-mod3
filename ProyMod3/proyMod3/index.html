@@ -9,15 +9,18 @@
     <title>PrimeZone</title>
   </head>
   <body>
-
+    <!--Header Products-->
     <header id="header-shop">
+      <!--Imagen del header-->
      <img class="logo-shop" src="./public/logo_size_invert_size_mod.jpg" alt="Logo de PrimeZone">
+     <!--Input para buscar productos con un svg de una lupa-->
      <div class="search-product">
       <input type="text" placeholder="Search Product...">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
       </svg>      
      </div>
+     <!--Icono para Login-->
      <div class="icon-identify">
       <a href="./login.html">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -27,9 +30,13 @@
      </div>
     </header>
 
+    <!--Main Products-->
     <main>
+      <!--Sección cards-->
       <section id="section-card">
         <h2>Products</h2>
+        <!--Esta sección tiene tres contenedores, el primero para las cards de los productos, otro para el botón de añadir un producto y 
+        por último, una divisón para los formularios (Aunque estos salen a través de un Modal Box)-->
         <div id="products-container"></div>
         <div id="container-addButton">
           <button type="button" class="addProduct">Add New Product</button>
@@ -38,12 +45,13 @@
       </section>
     </main>
     
+    <!--Footer Products-->
     <footer id="footer-shop">
-      <!--Logo de la marca-->
+      <!--Contenedor con el logo de la marca-->
       <div class="footer-logo">
         <img src="./public/logo_size_invert_primezone.jpg" alt="logo de la tienda de ropa">
       </div>
-      <!--Division en el footer para la información-->
+      <!--División para la información de la empresa-->
       <div class="footer-information">
         <a  href="#" class="contact">Contact</a>
         <a  href="#" class="company">Our company</a>
@@ -51,11 +59,14 @@
         <a  href="#" class="services">Services</a>
         <a  href="#" class="offers">Offers and campaigns</a>
       </div>
+      <!--División para los iconos de las redes sociales-->
       <div class="icons-social-media">
+
         <!--Twitter-->
         <svg class="socialx" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
           <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
         </svg>
+
         <!--svg de Instagram-->
         <svg class="instagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
           <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 
@@ -65,11 +76,13 @@
           388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 
           42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
         </svg> 
+
         <!--svg de Facebook-->
         <svg class="facebook" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" >
           <path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 
           44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/>
         </svg>  
+
       </div>
     </footer>
 

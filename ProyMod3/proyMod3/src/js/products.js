@@ -5,38 +5,42 @@
 const API_BASE_URL = "https://fakestoreapi.com";
 
 //--------------------------------------PETICIONES---------------------------------------------
+//Peticiones asíncronas --> Peticiones HTTP que no bloquean la ejecución del código.
 
 //Petición GET (para traer todos los productos)
-/*async function getAllProducts() {
+async function getAllProducts() {
     const url = `${API_BASE_URL}/products`;
 
     try {
-        const response = await fetch(url);
+        const response = await fetch(url);//Solicitud HTTP a la URL especificada, antes de continuar al siguiente paso la función espera a que la respuesta sea recibida
 
-        if (!response.ok) {
+        if (!response.ok) {//Si la respuesta no es exitosa, lanza un mensaje de error y el estado de la respuesta.
             throw new Error("Request failure", response.status);
         }
 
-        return await response.json();
+        return await response.json(); //Se convierte la respuesta en formato json
         
 
-    } catch (error) {
+    } catch (error) {//Error en la solicitud
         console.error("Error fetching products", error);
     }
 }
 
-//Una vez la petición nos devuelva los productos llamamos con una promise a la función displayProducts() donde se le pasan esos resultados por parámetro
+/*Se llama a la función anterior, como es asíncrona, devuleve una promesa que al resolverse, devolverá el resultado.
+Si la promesa se resuelve correctamente el resultado se pasa como parámetro a la función displayProducts mostrando los 
+productos obtenidos*/
+
 getAllProducts()
     .then((resultado) => {
         displayProducts(resultado);
     })
     .catch((error) => {  
         console.error("Error fetching products:", error);
-});*/
+});
 
 /*Se declaró un array de objetos que contiene los productos resultado de la petición GET (alllProducts) 
 a la API, debido a problemas con la misma */
-const resultado = [
+/*const resultado = [
     {"id":1,"title":"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops","price":109.95,"description":"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday","category":"men's clothing","image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","rating":{"rate":3.9,"count":120}},
     {"id":2,"title":"Mens Casual Premium Slim Fit T-Shirts ","price":22.3,"description":"Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.","category":"men's clothing","image":"https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg","rating":{"rate":4.1,"count":259}},
     {"id":3,"title":"Mens Cotton Jacket","price":55.99,"description":"great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.","category":"men's clothing","image":"https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg","rating":{"rate":4.7,"count":500}},
@@ -57,11 +61,11 @@ const resultado = [
     {"id":18,"title":"MBJ Women's Solid Short Sleeve Boat Neck V ","price":9.85,"description":"95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem","category":"women's clothing","image":"https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg","rating":{"rate":4.7,"count":130}},
     {"id":19,"title":"Opna Women's Short Sleeve Moisture","price":7.95,"description":"100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort","category":"women's clothing","image":"https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg","rating":{"rate":4.5,"count":146}},
     {"id":20,"title":"DANVOUY Womens T Shirt Casual Cotton Short","price":12.99,"description":"95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.","category":"women's clothing","image":"https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg","rating":{"rate":3.6,"count":145}}
-];
+];*/
 
 
 //Petición GET (traer solo un producto)
-/*async function getProduct(id) {
+async function getProduct(id) {
     const url = `${API_BASE_URL}/products/${id}`;
 
     try {
@@ -79,14 +83,14 @@ const resultado = [
     }
 }
 
-//Petición POST (crear un nuevo producto)
 
+//Petición POST (crear un nuevo producto)
 async function createNewProduct(obj) { //obj pendiente de cambio
     const url = `${API_BASE_URL}/products`;
 
     try {
         const response = await fetch(url,{
-            method: "POST",
+            method: "POST",//Método POST que se usa para enviar datos al servidor 
             headers: {
                 "Content-type": "application/json",
             },
@@ -107,13 +111,12 @@ async function createNewProduct(obj) { //obj pendiente de cambio
 
 
 //Petición PUT (editar un producto existente)
-
-async function editProduct(obj, id) {//hay que pasarle los datos a cambiar y el id para que los cambie en ese producto
-    const url = `${API_BASE_URL}/products/${id}`; //si quiero editar cualquier producto
+async function editProduct(obj, id) {//Se pasan los datos a cambiar y el id para que los actualice en ese producto
+    const url = `${API_BASE_URL}/products/${id}`; 
 
     try {
         const response = await fetch(url,{
-            method: "PUT",
+            method: "PUT",//Método HTTP que implica la actualización en este caso de un producto.
             headers: {
                 "Content-Type" : "application/json",
             },
@@ -136,13 +139,12 @@ async function editProduct(obj, id) {//hay que pasarle los datos a cambiar y el 
 }
 
 //Petición DELETE (borrar un producto)
-
 async function deleteProduct(id) { //borramos el producto de la id especificada
     const url = `${API_BASE_URL}/products/${id}`;
 
     try {
         const response = await fetch(url,{
-            method: "DELETE",
+            method: "DELETE",//Método para eliminar un recurso, en este caso eliminar un producto.
         });
 
         if (!response.ok) {
@@ -156,23 +158,23 @@ async function deleteProduct(id) { //borramos el producto de la id especificada
         console.error("Error deleting product:", error);
     }
 }
-*/
+
 
 //----------------------------------Funciones manejadoras------------------------------------------ 
 
-//funcion para mostrar todos los productos (todos estos productos vienen de la petición)
+//Función para mostrar todos los productos en la interfaz de usuario (estos productos vienen de la petición).
 
-function displayProducts(products) {//a esta función se le deben pasar los datos obtenidos con la peticion del get
+function displayProducts(products) {//recibe por parámetro un array de objetos con el resultado de la petición GET de todos los productos.
 
     console.log(products);
 
-    //Localizamos en js el contenedor donde iran las cartas y que ya está en el html
+    //Se localiza o selecciona (HTML) el contenedor donde se mostrarán las cartas de los productos.
     const productsContainer = document.getElementById("products-container");
 
-    //Limpiamos o vaciamos el contenido HTML dentro de mi productsContainer
+    //Se vacía el contenedor en caso de que hubiera contenido.
     productsContainer.innerHTML="";
 
-    //Creamos un contenedor donde irán todo lo que quiero enseñar de cada producto (usamos un forEach para iterar y crear ese contenedor por cada uno)
+    //Se crea un contenedor donde irán todo lo que quiero enseñar de cada producto (usamos un forEach para iterar y crear ese contenedor por cada uno de los productos)
     products.forEach((product) => {
         createProduct(product, productsContainer);
     });
@@ -182,91 +184,97 @@ function displayProducts(products) {//a esta función se le deben pasar los dato
 
 }
 
-displayProducts(resultado); //QUITAR LUEGO JUNTO CON EL OBJETO CREADO
+//displayProducts(resultado); //QUITAR LUEGO JUNTO CON EL OBJETO CREADO
 
-//Función para pintar un producto y pintarlo en el DOM
+
+//Función para crear un contenedor HTML de un producto y añadirlo dinámicamente al DOM.
 
 function createProduct(product, productsContainer) {
-    console.log(product);
+    console.log(product);//Comprobación para saber si los datos llegan bien.
 
-    //creamos por cada producto un contenedor
+    //Se crea un div para cada producto.
     const productCard = document.createElement("div");
 
-    //Le damos un id al elemento creado
+    //Se asigna un id a cada tarjeta de producto.
     productCard.id = `product-${product.id}`; //el id de las tarjetas son : product-01, product-02....
-    productCard.className = "product-card"; //REVISAR esta parte
+    productCard.className = "product-card"; //Se le asigna una clase a productCard para dar estilos a las tarjetas.
 
 
-    //creamos dos contenedores uno para la informacion y otro para los botones de edit y delete y le damos una clase a cada uno
+    //Se crean dos contenedores uno para la información del producto y otro para los botones de edit y delete, asignandoles una clase a cada uno.
     const cardInfo = document.createElement("div");
     const cardButtons = document.createElement("div");
 
     cardInfo.className = "card-info";
     cardButtons.className = "card-buttons";
 
-    //metemos los dos div dentro de productCard
+    //Se agregan los contenedores al contenedor principal productCard
     productCard.appendChild(cardInfo);
     productCard.appendChild(cardButtons);
 
-    //añadimos una plantilla literal para generar un html con las siguientes partes en la cardInfo dentro de productCard:
+    //Se usa una template literal para generar un html con las siguientes partes en la cardInfo dentro de productCard:
     cardInfo.innerHTML = `
             <img class="product-img" src="${product.image}" alt="${product.title}">
             <h3>${product.title}</h3>
             <p class="product-description">${product.description}</p>
             <p class="product-price">${product.price} €</p>
-            <p class="product-category">${product.category}</p>`; //Esto tiene que ir oculto porque no quiero mostrarlo (display: none)
+            <p class="product-category">${product.category}</p>`; //Va oculto en el css (display: none)
 
 
-    //creamos un boton de delete y edit
+    //Se crea un botón de delete y edit, se asigna un id a cada tipo de botón.
     const buttonDelete = document.createElement("button");
     buttonDelete.id = `buttonDelete-${product.id}`;
     const buttonEdit = document.createElement("button");
     buttonEdit.id = `buttonEdit-${product.id}`;
 
-    //Le damos a cada uno contenido de texto descriptivo de lo que hacen 
+    //Se asigna a cada uno un texto explicativo de su función.
     buttonDelete.textContent = "Delete";
     buttonEdit.textContent = "Edit";
 
-    //inyectamos los dos botones en el contenedor cardButtons
+    //Se añaden los dos botones en el contenedor cardButtons
     cardButtons.appendChild(buttonEdit);
     cardButtons.appendChild(buttonDelete);
 
-    //Añadimos eventos a los botones
+    //Se añaden eventos a cada uno de los botones
     buttonEdit.addEventListener("click", (event) => {
-        editAndShowForm(event);
+        editAndShowForm(event);//cuando hace click en editar se ejecuta la función editAndShowForm();
     });
 
     buttonDelete.addEventListener("click", (event) => {
-        deleteProductToDOM(event);
+        deleteProductToDOM(event);//cuando hace click en eliminar se ejecuta la función deleteProductToDOM();
     });
 
-    //lo inyectamos en el DOM
+    //Se agrega el contenedor productCard (con la información y los botones) al contenedor principal productsContainer en el DOM.
     productsContainer.appendChild(productCard);
 }
 
-/*función para editar un producto (al darle al botón edit del producto y que aparezca un 
-formulario con los datos del producto a editar)*/
-
-//Cambiar function editAndShowForm con sync y ponerle un await getProduct y cambiar todo
+/*Función para editar un producto, el objetivo de la función es mostrar un formulario para editar los datos de un producto,
+al darle click al botón de editar, con la posbilidad de enviar los datos después de modificarlos y que estos se muestren 
+al usuario a través del DOM*/
 
 function editAndShowForm(event){
+
+    //Se obtiene el Id del botón al hacer click sobre el.
     const buttonId = event.target;
     console.log(buttonId);
 
+    //Se extrae el Id del producto al quitar el prefijo del Id del botón.
     const productId = buttonId.id.replace('buttonEdit-', '');
     console.log(productId);
 
+    //Se selecciona el contenedor del formulario edit 
     const containerForm = document.getElementById("products-form");
 
-    //mostrar el formulario si está oculto
+    //Aseguramos que se muestre el formulario si está oculto.
     containerForm.style.display = 'block'; // Nos aseguramos que el contenedor sea visible
 
-    containerForm.innerHTML="";
+    containerForm.innerHTML="";//Se limpia el contenido del formulario.
 
     //const form = document.createElement("form");
 
+    //Se llama a getProduct para obtener los detalles del producto usando su Id
     getProduct(productId) 
-    .then((product) => {
+    .then((product) => {//Se usa then para manejar la respuesta. Una vez se obtiene el producto, se genera dinámicamente el formulario con los datos del producto.
+        //Se crea el HTML del formulario
         containerForm.innerHTML= `
         <div id="modalBoxEdit" class="modal">
             <div class="modal-content">
@@ -313,21 +321,22 @@ function editAndShowForm(event){
             </div>
         </div>`;
 
+        //Se llama a la función de validación del formulario
         loadValidation();
 
+        //Localizamos el modalBox donde se insertará el formulario
         const form = document.querySelector("#modalBoxEdit form");
 
+        //Se añade un addEventListener de tipo submit al formulario
         form.addEventListener("submit", async (event) => {
-            event.preventDefault();
+            event.preventDefault();//Evita la recarga de la página
 
-            forceValidation();
-
-
-            //Si hay un error en el formulario no envio nada y salgo submit (antes en vez de form ponia formAdd)
+            //Si hay errores en el formulario no se envía.
             if (form.querySelectorAll(".error").length > 0) {
                 return;
             }
             
+            //Si no hay errores se recopilan los datos del formulario en updatedProduct y se llama a lapetición para realizar la edición del producto.
             const updatedProduct = {
                 title: event.target.title.value,
                 price: event.target.price.value,
@@ -338,60 +347,64 @@ function editAndShowForm(event){
             console.log(updatedProduct);
 
             await editProduct(updatedProduct, productId);
-            //Aquí puedo hacer una lógica para repintar la tarjeta o llamar directamente a una función que tenga incluida esa lógica
+
+            //Se llama a la función repaint() para actualizar la tarjeta del producto en el DOM.
             repaint(updatedProduct, productId);
 
 
             //BOTÓN SEND DEL FORMULARIO
 
-            //Con este paso se logra una vez hace el send, el contenedor de ese formulario pase a display none y se deje de visualizar
+            //Se consigue una vez hace el send, que el contenedor de ese formulario pase a display none y se deje de visualizar
             
-            //selección del contenedor del formulario 
+            //Se selecciona el contenedor del formulario 
             const containerFormEdit = document.getElementById("products-form");
 
-            //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+            //Se llama a la función de toggleDisplay y se le pasa el contenedor donde se encuentra el formulario.
             toggleDisplay(containerFormEdit);
-            
-
         });
 
         //BOTÓN CANCEL DEL FORMULARIO
 
-        //Creo la funcionalidad del botón cancel del formulario editar
+        //Se crea la funcionalidad del botón cancel del formulario editar
+        //Selección del botón con la clase button-reset dentro del formulario dentro de modalBoxEdit
         const buttonCancel = document.querySelector(`#modalBoxEdit .button-reset`);
         console.log(buttonCancel);
+
+        //Se agrega un addEventListener al botón cancelar para que al hacer click se ejecute la función toggleContainerForm.
         buttonCancel.addEventListener("click", (event) =>{
              toggleContainerForm(event);
         });
 
         //SPAN PARA CERRAR EL FORMULARIO 
 
+        //Selección del icono de cerrar (con la clase close) dentro del formulario  
         const spanForm = document.querySelector("#modalBoxEdit .close");
+        //Se agrega un addEventListener que al hacer click en la x se ejecuta la función toggleContainerForm.
         spanForm.addEventListener("click", (event) =>{
             toggleContainerForm(event);
         });
 
     })
-    .catch((error) => {  
+    .catch((error) => {  //En caso de error 
         console.error("Error fetching products:", error);
     });
-
-    //containerForm.appendChild(form);
-
-    /*AQUI SE PUEDE PONER EL TOGGLEDISPLAY PARA HACER QUE APAREZCA Y DESAPAREZCA PERO NO QUEDA BIEN
-    DAR A EDIT DE OTRO PRODUCTO Y QUE DESAPAREZCA Y TENGA QUE VOLVER A DARLE. PREFIERO DAR ESA FUNCIONALIDAD 
-    AL BOTÓN CANCEL CON LA ÚNICA CONDICIÓN QUE SI ES BLOCK EL FORMULARIO ME HAGA NONE*/
 
 }
 
 //funcion de repintar una card
+//Tiene como objetivo actualizar la información de una tarjeta de producto en el DOM después de ser editada.
 function repaint(obj, id) {
-    //Localizar a la card que se quiere repintar
+    //Se crea el id del producto, siguiendo el formato product-{id}. Usandose para identificar y seleccionar la tarjeta del producto en el DOM
     const cardProductId = `product-${id}`;
 
-    /*Seleccionar el elemento h3 dentro de .card-info en el contenedor con id #cardProductId y luego 
-    cambiamos el contenido de ese h3 por el titulo del objeto creado a través del form. Se hará para todas
-    las propiedades del objeto a editar*/
+    //Actualizar los elementos dentro de la tarjeta
+
+    /*Se seleccionan los elementos dentro de la tarjeta y se actualiza su contenido.
+    
+    Ejemplo:
+    Se selecciona el elemento h3 dentro de .card-info en el contenedor con id #cardProductId, luego 
+    se cambia el contenido de ese h3 por el título del objeto creado a través del form. Se hará para todas
+    las propiedades del objeto que se quieran editar*/
 
     //Imagen
     const img = document.querySelector(`#${cardProductId} .card-info .product-img`);
@@ -408,24 +421,31 @@ function repaint(obj, id) {
     //Categoria
     const category = document.querySelector(`#${cardProductId} .card-info .product-category`);
     category.textContent = obj.category;
-    
 }
 
 
-//Función para borrar una card de un producto
-
+//Función para borrar una card de un producto del DOM 
 async function deleteProductToDOM(event) {
+
+    /*Al hacer click en el botón de eliminar el event.target hace referencia al botón en sí. Se guarda el Id para extraer 
+    el Id del producto al que pertenece ese botón*/
     const buttonId = event.target;
     console.log(buttonId);
 
+    /*Se usa el id del botón eliminar (buttonDelete-{product.id}) y con replace se elimina la parte buttonDelete- por vacío
+    consiguiendo solo el productId que es el identificador del producto que se quiere eliminar.*/
     const productId = buttonId.id.replace('buttonDelete-', '');
     console.log(productId);
 
+    /*Con el productId se localiza la tarjeta del producto en el DOM. El Id de la tarjeta viene dado con el formato 
+    product-{productId}, por lo que este será el Id que se use para seleccionar y guardar la variable productCard*/
     const productCard = document.getElementById(`product-${productId}`);
     console.log(productCard);
 
+    //Se llama a la función deleteProduct que es una funcioón asíncrona que hace la petición DELETE para eliminar el producto
     await deleteProduct(productId);
 
+    //Para eliminar la tarjeta del DOM. Si la tarjeta del producto se encuentra, se elimina usando productCard.remove().
     if (productCard) {
         productCard.remove();
         console.log(productCard);
@@ -569,40 +589,48 @@ function addNewProductToDOM() {
 
 //---------------------------------------Funciones Aux----------------------------------------------
 
-//función para que que un elemento sea visible o invisible.
-
+//Función para que que un elemento sea visible (style: "block") o invisible (style: "none").
+//(alterna la visibilidad de un elemento).
 function toggleDisplay(element) {
     element.style.display === "block" ? element.style.display = "none" : element.style.display = "block";
     console.log(element);
 }
 
-//Función interruptor para cerrar los formularios
+
+//Función interruptor para alternar la visibilidad de los formularios.
 function toggleContainerForm(event) {
     event.preventDefault();
 
-    //selección del contenedor del formulario 
+    //Selección del contenedor del formulario 
     const containerFormAdd = document.getElementById("products-form");
 
-    //Llamamos a la función de toggleDisplay y le pasamos el container donde se encuentra el formulario
+    //Se llama a la función de toggleDisplay y se pasa como argumento el container donde se encuentra el formulario.
     toggleDisplay(containerFormAdd);
 }
 
 
 //------------------------Verificaciones de formulario-----------------------------------
 
-
+//Validación de formularios 
 function loadValidation (){
     
     //Inputs alfanúmericos
+    //Se localiza los inputs con la clase input-alphanumeric 
+
     const inputsAlphanumeric = document.querySelectorAll(".input-alphanumeric");
 
     inputsAlphanumeric.forEach((input) =>{
         input.addEventListener("input" , (event) => {
-
+            //Se usa una expresión regular para validar el valor introducido a través del input 
+            //Regex asegura que el texto empiece con mayúsculas, puede contener mayúsculas y minúsculas, números, puntos y guiones.
             const regex = /^[A-Z][a-zA-Z0-9.-]*$/;
             const verificationInputAlpNum = regex.test(event.target.value); 
+            //Se localiza al span
             const span = event.target.closest("div").querySelector("span");
 
+            /*Si la entrada no cumple con el regex se añade una clase nueva al input (error), con esta se da estilos a través de css.
+            Cuando no cumple la expresión se muestra un mensaje de error a través del span. En cambio si es válida la entrada
+            se elimina el error y no se muestra el span*/ 
             if(!verificationInputAlpNum){
                 input.classList.add("error");
                 span.style.display = 'block';
@@ -618,7 +646,7 @@ function loadValidation (){
         });
     });
     
-    
+    //Lo mismo que el anterior, cambiando el tipo de input y la expresión regular usada.
     //Inputs númericos
 
     const inputsNumeric = document.querySelectorAll(".input-numeric");
@@ -626,6 +654,7 @@ function loadValidation (){
     inputsNumeric.forEach((input) =>{
         input.addEventListener("input" , (event) => {
 
+            //Esta expresión valida números decimales mayores que 0, así como valores negativos.
             const regex = /^(?!0(\.0+)?$)(?!\-)(\d+(\.\d+)?|\.\d+)$/;
             const verificationInputNum = regex.test(event.target.value); 
             const span = event.target.closest("div").querySelector("span");
@@ -645,6 +674,7 @@ function loadValidation (){
         });
     });
 
+    //Lo mismo que el anterior, cambiando el tipo de input y la expresión regular usada.
     //Inputs alfabéticos
 
     const inputsAlpha = document.querySelectorAll(".input-alpha");
@@ -652,6 +682,7 @@ function loadValidation (){
     inputsAlpha.forEach((input) =>{
         input.addEventListener("input" , (event) => {
 
+            //Esta expresión valida letras en minúscula y apóstrofos.
             const regex = /^[a-z']+$/;
             const verificationInputAlpha = regex.test(event.target.value); 
             const span = event.target.closest("div").querySelector("span");
@@ -672,20 +703,27 @@ function loadValidation (){
     });
 }
 
+//Esta función permite que las validaciones para los campos anteriores se ejecuten manualmente.
+//Simula la entrada de texto en los inputs y dispara la validación asociada a cada uno de ellos.
+
 function forceValidation() {
     
+    //Inputs alfanuméricos
     const inputsAlphanumeric = document.querySelectorAll(".input-alphanumeric"); 
     inputsAlphanumeric.forEach(input => {
         // Crear el evento 'input'
+        /*Para cada tipo de input se crea un evento input que provoca que la validación asociada a ese input se ejecute.*/
         const event = new Event('input', {
           'bubbles': true,
           'cancelable': true
         });
       
-        // Disparar el evento 'input' en cada elemento
+        /* A continuación se llama input.dispatchEvent(event); esta función es útil cuando se necesita manejar un evento, 
+        como si el usuario hubiera interactuado con el campo, sin que realmente lo haga*/
         input.dispatchEvent(event);
     });
 
+    //Inputs numéricos
     const inputsNumeric = document.querySelectorAll(".input-numeric");
     inputsNumeric.forEach(input => {
         // Crear el evento 'input'
@@ -694,10 +732,10 @@ function forceValidation() {
           'cancelable': true
         });
       
-        // Disparar el evento 'input' en cada elemento
         input.dispatchEvent(event);
     });
 
+    //Inputs alfabéticos
     const inputsAlpha = document.querySelectorAll(".input-alpha");
     inputsAlpha.forEach(input => {
         // Crear el evento 'input'
@@ -706,7 +744,6 @@ function forceValidation() {
           'cancelable': true
         });
       
-        // Disparar el evento 'input' en cada elemento
         input.dispatchEvent(event);
     });
 }

@@ -35,7 +35,7 @@ A continuación, se describen las ramas que se habrían utilizado para simular u
 
 ## Características
   
-- *HTML Semántico*: El contenido está estructurado con etiquetas HTML5 apropiadas, como <header>, <footer>, <section>, etc.
+- *HTML Semántico*: El contenido está estructurado con etiquetas HTML5 apropiadas.
 - *CSS Anidado*: Se utiliza CSS para dar estilo a los elementos de la página, con un enfoque en anidación para mayor organización y control de los estilos.
 - *Responsive Design*: El diseño se adapta a diferentes tipos de visualizaciones, garantizando una experiencia óptima para el usuario.
 - *Navegación Dinámica*: Se incluyen enlaces rápidos a diferentes secciones de la página (login).
@@ -72,12 +72,12 @@ Además, se implementó un sistema de login para que los usuarios puedan autenti
 3. **Parte 2: Página Web Interactiva**:
    - Si deseas trabajar o visualizar la página web, navega a la carpeta ProyMod3.
    - Instala las dependencias con Vite (si aún no lo has hecho):
-     npm install
+     **npm install**
    - Luego, para iniciar el servidor de desarrollo de Vite, corre el siguiente comando:
-     npm run dev
+     **npm run dev**
    - Abre tu navegador y visita el local host que aparece después de introducir el comando anterior, a continuación podrás ver la página en acción.
-   **Si deseas realizar cambios**
-   Crea una nueva rama donde realizar tus cambios, usando el siguiente comando:  git checkout -b nombre-de-tu-rama.
+   
+**Si deseas realizar cambios** : Crea una nueva rama donde realizar tus cambios, usando el siguiente comando **git checkout -b nombre-de-tu-rama**.
 
 ## Mejoras Futuras
 Algunas posibles mejoras para este proyecto son:
